@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | ConfiSafe</title>
+  <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">
+      <span class="conf">Confi</span><span class="safe">Safe</span>
+    </div>
+    <nav class="menu">
+      <a href="/index.html">Serviços</a>
+      <a href="contato.html">Contato</a>
+      <a href="login.html" class="login-btn">Login</a>
+    </nav>
+  </header>
+
+  <main class="login-container">
+    <div class="login-box">
+      <h2><span class="conf">Confi</span><span class="safe">Safe</span></h2>
+      <p class="subtitle">Acesso ao Sistema de Monitoramento de EPIs</p>
+
+      <form>
+        <label for="email">E-mail</label>
+        <input type="email"     id="email"      name="email"      autocomplete="email"  placeholder="Digite seu e-mail" required />
+        
+        <label for="senha">Senha</label>
+        <input type="password"  id="senha"      name="senha"      autocomplete="new-password"  placeholder="Digite sua senha" required />
+
+        <button type="submit">Entrar</button>
+      </form>
+
+      <p class="register-text">
+        Ainda não tem conta? <a href="/pages/cadastro.html">Cadastre-se</a>
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 ConfiSafe - Todos os direitos reservados.</p>
+  </footer>
+
+      <script src="/js/login.js"></script>
+</body>
+</html>
