@@ -14,5 +14,5 @@
     alert("Login realizado com sucesso!");
 
     // Redireciona para a página inicial
-    window.location.href = "/index.html";
+    window.location.href = "../index.html";
   });
