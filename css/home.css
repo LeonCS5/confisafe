@@ -14,53 +14,6 @@ body {
   flex-direction: column;
 }
 
-/* ===== HEADER GERAL ===== */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 40px;
-  background: #fff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.logo {
-  font-size: 1.6rem;
-  font-weight: 600;
-}
-
-.logo .conf {
-  color: #0a3d7e;
-}
-
-.logo .safe {
-  color: #1e90ff;
-}
-
-.menu a {
-  text-decoration: none;
-  color: #333;
-  margin-left: 25px;
-  font-weight: 500;
-  transition: color 0.3s;
-}
-
-.menu a:hover {
-  color: #1e90ff;
-}
-
-.login-btn {
-  background: #1e90ff;
-  color: #fff !important;
-  padding: 8px 16px;
-  border-radius: 6px;
-  transition: background 0.3s;
-}
-
-.login-btn:hover {
-  background: #0a3d7e;
-}
-
 /* ===== HERO SECTION ===== */
 .hero {
   background: linear-gradient(rgba(10, 61, 126, 0.85), rgba(30, 144, 255, 0.85));
@@ -146,22 +99,7 @@ body {
 }
 
 /* ===== RESPONSIVIDADE ===== */
-@media (max-width: 768px) {
-  .navbar {
-    padding: 15px 20px;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .menu {
-    display: flex;
-    gap: 15px;
-  }
-  
-  .menu a {
-    margin-left: 0;
-  }
-  
+@media (max-width: 768px) {  
   .hero {
     padding: 60px 20px;
   }
