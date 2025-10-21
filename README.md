@@ -1,18 +1,18 @@
-=== Nome do Projeto ===
+# === Nome do Projeto ===
 
-# ConfiSafe
+ ConfiSafe
 
-=== Nome de Integrantes ===
+# === Nome de Integrantes ===
 
-# Leonam Candido;     
+ Leonam Candido;     
 
-# Renato Aragao;
+ Renato Aragao;
 
-# Henrique Lourenco;
+ Henrique Lourenco;
 
-# Michael Coutinho;
+ Michael Coutinho;
 
-=== Descrição do sistema simulado ===
+# === Descrição do sistema simulado ===
 
 🚀 CONFISAFE: Solução Inteligente para Espaços Confinados
 
