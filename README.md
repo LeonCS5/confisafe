@@ -33,19 +33,33 @@ Estrutura de Assets	Organização padrão de estilos (css/), scripts (js/) e rec
 O projeto segue uma arquitetura base de HTML/CSS/JS (Vanilla), organizada para clareza:
 
 ├── assets/
-│   ├── imgs/                   # Imagens e recursos visuais (monitoramento, epi, etc.)
+│   ├── imgs/                   
+# Imagens e recursos visuais (monitoramento, epi, etc.)
+
 ├── css/
-│   ├── home.css                # Estilos da página inicial
-│   ├── login.css               # Estilos da página de login
+│   ├── home.css                
+# Estilos da página inicial
+
+│   ├── login.css              
+# Estilos da página de login
+
 │   └── ...
 ├── js/
-│   ├── carrosel.js             # Lógica do carrossel/slider
+│   ├── carrosel.js             
+# Lógica do carrossel/slider
+
 │   └── ...
 ├── pages/
-│   ├── contato.html            # Página de Contato
-│   ├── login.html              # Página de Login
+│   ├── contato.html            
+# Página de Contato
+
+│   ├── login.html              
+# Página de Login
+
 │   └── ...
-├── index.html                  # Página principal (Homepage)
+├── index.html                  
+# Página principal (Homepage)
+
 └── README.md
 
 🛠️ Como Visualizar Localmente
