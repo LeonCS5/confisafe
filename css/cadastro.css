@@ -87,13 +87,3 @@ main.login-container {
 .login-form a:hover {
   text-decoration: underline;
 }
-
-/* Media Query para Responsividade*/
-@media (max-width: 800px) {
-  .grid-contato {
-      grid-template-columns: 1fr;
-  }
-  .contato-content {
-      padding: 25px;
-  }
-}

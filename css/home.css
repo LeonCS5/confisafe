@@ -218,13 +218,3 @@ body {
 #radio4:checked ~ .navigation-auto .auto-btn4{
     background-color: #fff;
 }
-
-
-/* ===== FOOTER ===== */
-footer {
-  background: #fff;
-  padding: 15px;
-  text-align: center;
-  color: #333;
-  font-size: 0.9rem;
-}
