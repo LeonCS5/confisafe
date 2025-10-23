@@ -59,7 +59,9 @@ body {
 }
 
 .login-btn:hover {
-  background: #0a3d7e;
+  background:  #fff;
+  color: #0a3d7e !important;
+  border: 1px solid black;
 }
 
 /* ===== FOOTER ===== */
