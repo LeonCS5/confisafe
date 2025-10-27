@@ -1,0 +1,107 @@
+/* =========================================================
+   ===== MENU LATERAL (SIDEBAR) =====
+   ========================================================= */
+
+/* ===== Estrutura da Sidebar ===== */
+.sidebar {
+  position: fixed;
+  top: 70px; /* Espaço para o header fixo */
+  left: 0;
+  width: 240px;
+  height: calc(100vh - 70px); /* Ocupa o restante da altura da tela */
+  background: linear-gradient(180deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+  display: flex;
+  flex-direction: column;
+  padding-top: 25px;
+  box-shadow: 3px 0 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* Permite rolagem caso tenha muito conteúdo */
+  z-index: 100;
+}
+
+/* ===== Menu Interno da Sidebar ===== */
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 15px;
+}
+
+/* ===== Links do Menu ===== */
+.sidebar-menu a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #f1f7ff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 12px 15px;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+/* ===== Ícones dos Itens ===== */
+.sidebar-menu a img {
+  width: 22px;
+  height: 22px;
+  filter: brightness(0) invert(1);
+  transition: var(--transition);
+}
+
+/* ===== Efeito de Brilho ao Passar o Mouse ===== */
+.sidebar-menu a::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transition: left 0.4s ease;
+  z-index: 0;
+}
+
+/* ===== Hover e Foco ===== */
+.sidebar-menu a:hover::before,
+.sidebar-menu a:focus::before {
+  left: 0;
+}
+
+.sidebar-menu a:hover,
+.sidebar-menu a:focus {
+  transform: translateX(6px);
+  color: var(--white);
+  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.15);
+  outline: none;
+}
+
+.sidebar-menu a:hover img,
+.sidebar-menu a:focus img {
+  transform: scale(1.15);
+}
+
+/* ===== Item Ativo ===== */
+.sidebar-menu a.active {
+  background: rgba(255, 255, 255, 0.12);
+  border-left: 4px solid #cce4ff;
+  font-weight: 600;
+}
+
+/* =========================================================
+   ===== CONTEÚDO PRINCIPAL =====
+   ========================================================= */
+
+.main-content {
+  flex: 1;
+  padding: 40px;
+  margin-left: 240px; /* Compensa a largura da sidebar fixa */
+  margin-top: 70px;   /* Compensa o header fixo */
+}
+
+
+/* ===== ÚLTIMO ITEM DO MENU ===== */
+.sidebar-menu a:last-child {
+  margin-bottom: 40px; 
+}

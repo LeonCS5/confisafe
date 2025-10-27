@@ -15,32 +15,29 @@
     </div>
     <nav class="menu">
       <a href="index.html" class="active">Início</a>
-      <!-- <a href="#">Contato</a> -->
-       <a href="#">Configurações</a>
-      <a href="../pages/login.html" class="login-btn">Sair</a>
+      <a href="#">Configurações</a>
+      <a href="../pages/login.html" class="login-btn" id="logoutBtn">Sair</a>
     </nav>
   </header>
 
   <!-- ===== LAYOUT GERAL ===== -->
   <div class="layout">
 
-    <!-- ===== MENU LATERAL ===== -->
+     <!-- ===== MENU LATERAL ===== -->
     <aside class="sidebar">
-
-      <!-- PERFIL DO USUÁRIO -->
       <div class="user-profile">
-        <img src="../assets/img/relatorio.png" alt="Foto do Funcionário">
-        <h3>Michael Coutinho</h3>
-        <p>Técnico de Segurança</p>
+        <img src="../assets/img/controle.png" alt="Foto do Funcionário" id="userPhoto">
+        <h3 id="userName">Michael Coutinho</h3>
+        <p id="userRole">Técnico de Segurança</p>
       </div>
 
       <nav class="sidebar-menu">
-        <a href="index.html" class="active"><img src="../img/dashboard.png" alt="Painel"> Painel</a>
-        <a href="#"><img src="../img/capacete.png" alt="Controle de Acesso"> Controle de Acesso</a>
-        <a href="#"><img src="../img/luvas.png" alt="Uso de EPIs"> Uso de EPIs</a>
-        <a href="#"><img src="../img/mascara.png" alt="Monitoramento"> Monitoramento</a>
-        <a href="#"><img src="../img/colete.png" alt="Treinamentos"> Treinamentos</a>
-        <a href="relatorio.html"><img src="../img/relatorio.png" alt="Relatórios"> Relatórios</a>
+        <a href="../pages/inicial.html"><img src="../img/dashboard.png" alt=""> Painel</a>
+        <a href="#"><img src="../img/capacete.png" alt=""> Controle de Acesso</a>
+        <a href="#"><img src="../img/luvas.png" alt=""> Uso de EPIs</a>
+        <a href="#"><img src="../icons/camera-cftv.png" alt=""> Monitoramento</a>
+        <a href="#"><img src="../img/colete.png" alt=""> Treinamentos</a>
+        <a href="../pages/relatorio.html" class="active"><img src="../img/relatorio.png" alt=""> Relatórios</a>
       </nav>
     </aside>
 
@@ -52,92 +49,92 @@
       </section>
 
       <!-- ===== ESTATÍSTICAS RÁPIDAS ===== -->
-      <section class="quick-stats">
-        <div class="stat-card">
+      <section class="quick-stats" id="statsContainer">
+        <div class="stat-card" data-stat="funcionarios">
           <div class="stat-icon">👥</div>
           <div class="stat-info">
-            <h3>48</h3>
+            <h3 id="totalFuncionarios">48</h3>
             <p>Funcionários Ativos</p>
           </div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card" data-stat="conformidade">
           <div class="stat-icon">✅</div>
           <div class="stat-info">
-            <h3>92%</h3>
+            <h3 id="taxaConformidade">92%</h3>
             <p>Conformidade com EPI</p>
           </div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card" data-stat="alertas">
           <div class="stat-icon">⚠️</div>
           <div class="stat-info">
-            <h3>3</h3>
+            <h3 id="alertasAtivos">3</h3>
             <p>Alertas Ativos</p>
           </div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card" data-stat="sistema">
           <div class="stat-icon">📊</div>
           <div class="stat-info">
-            <h3>100%</h3>
+            <h3 id="statusSistema">100%</h3>
             <p>Sistema Operacional</p>
           </div>
         </div>
       </section>
 
-            <!-- ===== DASHBOARD DE EPIs ===== -->
-      <section class="dashboard">
+      <!-- ===== DASHBOARD DE EPIs ===== -->
+      <section class="dashboard" id="episSection">
         <h2 class="section-title">Equipamentos de Proteção Individual</h2>
         <div class="cards-grid">
-          <div class="card">
+          <div class="card" data-epi-id="1">
             <div class="card-icon">
               <img src="../img/capacete.png" alt="Capacete">
             </div>
             <h3>Capacete de Segurança</h3>
             <p>Protege contra impactos e quedas de objetos em áreas industriais.</p>
             <div class="card-status">
-              <span class="status-badge compliant">95% Conformidade</span>
+              <span class="status-badge compliant" id="epi1-status">95% Conformidade</span>
             </div>
           </div>
 
-          <div class="card">
+          <div class="card" data-epi-id="2">
             <div class="card-icon">
               <img src="../assets/img/controle.png" alt="Luvas">
             </div>
             <h3>Luvas de Proteção</h3>
             <p>Evita cortes, queimaduras e contato com produtos químicos.</p>
             <div class="card-status">
-              <span class="status-badge warning">88% Conformidade</span>
+              <span class="status-badge warning" id="epi2-status">88% Conformidade</span>
             </div>
           </div>
 
-          <div class="card">
+          <div class="card" data-epi-id="3">
             <div class="card-icon">
               <img src="../img/mascara.png" alt="Máscara">
             </div>
             <h3>Máscara Respiratória</h3>
             <p>Filtra gases nocivos e partículas suspensas no ar.</p>
             <div class="card-status">
-              <span class="status-badge compliant">96% Conformidade</span>
+              <span class="status-badge compliant" id="epi3-status">96% Conformidade</span>
             </div>
           </div>
 
-          <div class="card">
+          <div class="card" data-epi-id="4">
             <div class="card-icon">
               <img src="../img/colete.png" alt="Colete">
             </div>
             <h3>Colete Refletivo</h3>
             <p>Aumenta a visibilidade em ambientes de baixa iluminação.</p>
             <div class="card-status">
-              <span class="status-badge compliant">94% Conformidade</span>
+              <span class="status-badge compliant" id="epi4-status">94% Conformidade</span>
             </div>
           </div>
         </div>
       </section>
 
       <!-- ===== FERRAMENTAS E RELATÓRIOS ===== -->
-      <section class="tools-section">
+      <section class="tools-section" id="toolsSection">
         <h2 class="section-title">Ferramentas e Relatórios</h2>
         <div class="cards-grid">
-          <div class="card">
+          <div class="card" data-tool="relatorios">
             <div class="card-icon">
               <img src="../img/relatorio.png" alt="Relatórios">
             </div>
@@ -148,7 +145,7 @@
             </div>
           </div>
 
-          <div class="card">
+          <div class="card" data-tool="treinamentos">
             <div class="card-icon">
               <img src="../img/treinamento.png" alt="Treinamentos">
             </div>
@@ -162,10 +159,10 @@
       </section>
 
       <!-- ===== ALERTAS RECENTES ===== -->
-      <section class="recent-alerts">
+      <section class="recent-alerts" id="alertSection">
         <h2 class="section-title">Alertas Recentes</h2>
         <div class="alerts-container">
-          <div class="alert-item high">
+          <div class="alert-item high" data-alert-id="1">
             <span class="alert-icon">⚠️</span>
             <div class="alert-content">
               <h4>Capacete sem certificação</h4>
@@ -173,7 +170,8 @@
             </div>
             <span class="alert-time">Há 2 horas</span>
           </div>
-          <div class="alert-item medium">
+
+          <div class="alert-item medium" data-alert-id="2">
             <span class="alert-icon">ℹ️</span>
             <div class="alert-content">
               <h4>Treinamento pendente</h4>
@@ -181,7 +179,8 @@
             </div>
             <span class="alert-time">Há 1 dia</span>
           </div>
-          <div class="alert-item low">
+
+          <div class="alert-item low" data-alert-id="3">
             <span class="alert-icon">📝</span>
             <div class="alert-content">
               <h4>Relatório mensal</h4>
@@ -193,7 +192,8 @@
       </section>
     </main>
   </div>
-
+  <!-- <script src="../js/inicial.js"></script> -->
+ <!-- <script src="../js/relatorio.js"></script> -->
   <!-- ===== FOOTER ===== -->
   <footer>
     <p>&copy; 2025 ConfiSafe - Todos os direitos reservados.</p>

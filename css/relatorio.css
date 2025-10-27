@@ -163,7 +163,27 @@ body {
   margin: 0;
 }
 
-/* ===== ITENS DO MENU LATERAL ===== */
+/* 
+   ===== MENU LATERAL (SIDEBAR) =====
+  */
+
+/* ===== Estrutura da Sidebar (sem alterações, está bom) ===== */
+.sidebar {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  width: 240px;
+  height: calc(100vh - 70px);
+  background: linear-gradient(180deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+  display: flex;
+  flex-direction: column;
+  padding-top: 25px;
+  box-shadow: 3px 0 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  z-index: 100;
+}
+
+/* ===== Menu Interno da Sidebar (sem alterações) ===== */
 .sidebar-menu {
   display: flex;
   flex-direction: column;
@@ -171,31 +191,32 @@ body {
   padding: 0 15px;
 }
 
+/* ===== Links do Menu (ajustes) ===== */
 .sidebar-menu a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   color: #f1f7ff;
   text-decoration: none;
   font-weight: 500;
   font-size: 0.95rem;
-  display: flex;
-  align-items: center;
-  gap: 12px;
   padding: 12px 15px;
   border-radius: 10px;
-  transition: var(--transition);
   position: relative;
   overflow: hidden;
-  transform: translateZ(0);
-  backface-visibility: hidden;
+  transition: all 0.3s ease; /* Transição mais geral para todas as propriedades */
+  z-index: 1; /* Garante que o texto esteja acima do ::before */
 }
 
+/* ===== Ícones dos Itens (sem alterações) ===== */
 .sidebar-menu a img {
   width: 22px;
   height: 22px;
   filter: brightness(0) invert(1);
-  transition: var(--transition);
+  transition: all 0.3s ease;
 }
 
-/* brilho suave */
+/* ===== Efeito de Brilho ao Passar o Mouse (ajustes) ===== */
 .sidebar-menu a::before {
   content: "";
   position: absolute;
@@ -208,30 +229,67 @@ body {
   z-index: 0;
 }
 
-.sidebar-menu a:hover::before,
-.sidebar-menu a:focus::before {
+/* ===== Hover e Foco (ajustes: remove o transform translateX e o box-shadow para o hover geral) ===== */
+.sidebar-menu a:not(.active):hover::before, /* Aplica o brilho apenas se não estiver ativo */
+.sidebar-menu a:not(.active):focus::before {
   left: 0;
 }
 
-/* hover geral */
-.sidebar-menu a:hover,
-.sidebar-menu a:focus {
-  transform: translateX(6px);
+.sidebar-menu a:not(.active):hover, /* Apenas aplica transform/shadow se não estiver ativo */
+.sidebar-menu a:not(.active):focus {
+  /* transform: translateX(6px); -- Removido para evitar que o ativo "saia do lugar" */
   color: var(--white);
-  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.15);
+  /* box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.15); -- Removido para evitar confusão com o ativo */
   outline: none;
+  background: rgba(255, 255, 255, 0.05); /* Um background leve no hover, se não for ativo */
 }
 
-.sidebar-menu a:hover img,
-.sidebar-menu a:focus img {
+.sidebar-menu a:not(.active):hover img,
+.sidebar-menu a:not(.active):focus img {
   transform: scale(1.15);
 }
 
+
+/* ===== Item Ativo (mantido, mas com ajustes sutis de transição) ===== */
 .sidebar-menu a.active {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.12); /* Fundo sólido para o ativo */
   border-left: 4px solid #cce4ff;
   font-weight: 600;
+  transform: translateX(0); /* Garante que o item ativo não se mova */
+  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.15); /* Adiciona o box-shadow aqui, se desejar */
+  color: var(--white); /* Garante que o texto fique branco */
+  /* Remova o ::before no ativo para que o background ativo seja a cor principal */
+  /* Se você quiser o brilho ::before também no ativo, pode deixar, mas visualmente pode confundir */
 }
+
+.sidebar-menu a.active::before {
+    left: -100%; /* Garante que o brilho do ::before não apareça quando ativo */
+}
+
+
+   /* ===== CONTEÚDO PRINCIPAL ===== */
+
+.main-content {
+  flex: 1;
+  padding: 40px;
+  margin-left: 240px; /* Compensa a largura da sidebar fixa */
+  margin-top: 70px;   /* Compensa o header fixo */
+  padding: 0 15px ; 
+}
+
+/* ===== ÚLTIMO ITEM DO MENU ===== */
+.sidebar-menu a:last-child {
+  margin-bottom: 40px; 
+}
+
+
+
+
+
+
+
+
+
 
 /* ===== CONTEÚDO PRINCIPAL ===== */
 .main-content {
