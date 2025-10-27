@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ConfiSafe - Relatórios</title>
+  <link rel="stylesheet" href="../css/relatorio.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- ===== HEADER ORIGINAL ===== -->
+  <header class="navbar">
+    <div class="logo">
+      <span class="conf">Confi</span><span class="safe">Safe</span>
+    </div>
+    <nav class="menu">
+      <a href="../pages/inicial.html">Início</a>
+      <a href="#">Configurações</a>
+      <a href="#" class="login-btn" id="logoutBtn">Sair</a>
+    </nav>
+  </header>
+
+  <!-- ===== LAYOUT GERAL ===== -->
+  <div class="layout">
+
+    <!-- ===== MENU LATERAL ===== -->
+    <aside class="sidebar">
+      <div class="user-profile">
+        <img src="../assets/img/controle.png" alt="Foto do Funcionário" id="userPhoto">
+        <h3 id="userName">Michael Coutinho</h3>
+        <p id="userRole">Técnico de Segurança</p>
+      </div>
+
+      <nav class="sidebar-menu">
+        <a href="../pages/inicial.html"><img src="../img/dashboard.png" alt=""> Painel</a>
+        <a href="#"><img src="../img/capacete.png" alt=""> Controle de Acesso</a>
+        <a href="#"><img src="../img/luvas.png" alt=""> Uso de EPIs</a>
+        <a href="#"><img src="../img/mascara.png" alt=""> Monitoramento</a>
+        <a href="#"><img src="../img/colete.png" alt=""> Treinamentos</a>
+        <a href="#" class="active"><img src="../img/relatorio.png" alt=""> Relatórios</a>
+      </nav>
+    </aside>
+
+    <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+    <main class="main-content">
+      <section class="welcome">
+        <h2>Relatórios de Segurança</h2>
+        <p>Acompanhe métricas, conformidade e atividades recentes do sistema.</p>
+      </section>
+
+      <!-- ===== CARDS DE RELATÓRIOS ===== -->
+      <section class="report-cards">
+        <div class="report-card" data-type="epi" id="cardEpi">
+          <h3>Conformidade com EPI</h3>
+          <p>Funcionários em conformidade: <strong id="epiPercent">92%</strong></p>
+          <p>Última auditoria: <span id="epiDate">20/10/2025</span></p>
+        </div>
+
+        <div class="report-card" data-type="excecoes" id="cardExcecoes">
+          <h3>Exceções</h3>
+          <p>Casos de não conformidade: <strong id="excecoesCount">5</strong></p>
+          <p>Equipamentos com falhas: <span id="excecoesEquip">Capacete, Luvas</span></p>
+        </div>
+
+        <div class="report-card" data-type="atividade" id="cardAtividade">
+          <h3>Atividade do Usuário</h3>
+          <p>Usuários ativos hoje: <strong id="userActive">18</strong></p>
+          <p>Último acesso: <span id="lastAccess">22/10/2025 - 14:32</span></p>
+        </div>
+
+        <div class="report-card" data-type="incidentes" id="cardIncidentes">
+          <h3>Relatório de Incidentes</h3>
+          <p>Total de incidentes registrados: <strong id="incidentCount">3</strong></p>
+          <p>Último incidente: <span id="lastIncident">21/10/2025</span></p>
+        </div>
+      </section>
+
+      <!-- ===== KPIs ===== -->
+      <section class="kpi-section">
+        <h3>Indicadores de Desempenho (KPIs)</h3>
+        <div class="kpi-cards">
+          <div class="kpi-card" id="kpiConformidade">
+            <h4>Meta de Conformidade</h4>
+            <div class="kpi-progress">
+              <div class="progress-bar">
+                <div class="progress-fill" id="kpiEpiBar" style="width: 92%"></div>
+              </div>
+              <span id="kpiEpiLabel">92% / 95%</span>
+            </div>
+          </div>
+
+          <div class="kpi-card" id="kpiIncidentes">
+            <h4>Redução de Incidentes</h4>
+            <div class="kpi-progress">
+              <div class="progress-bar">
+                <div class="progress-fill" id="kpiIncidentesBar" style="width: 75%"></div>
+              </div>
+              <span id="kpiIncidentesLabel">75% / 80%</span>
+            </div>
+          </div>
+
+          <div class="kpi-card" id="kpiTreinamentos">
+            <h4>Treinamentos Concluídos</h4>
+            <div class="kpi-progress">
+              <div class="progress-bar">
+                <div class="progress-fill" id="kpiTreinoBar" style="width: 100%"></div>
+              </div>
+              <span id="kpiTreinoLabel">100% / 100%</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== GRÁFICO ===== -->
+      <section class="chart-section">
+        <h3>Atividade Semanal</h3>
+        <canvas id="relatorioGrafico"></canvas>
+      </section>
+    </main>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>&copy; 2025 ConfiSafe - Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- ===== POPUP MODAL ===== -->
+  <div class="modal" id="popupModal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeModal">&times;</span>
+      <div id="modalHeader">
+        <h3 id="modalTitle">Título</h3>
+        <p class="modal-description" id="modalDescription"></p>
+      </div>
+      <div class="modal-metrics" id="modalMetrics"></div>
+      <textarea id="modalTextarea" placeholder="Digite suas observações..."></textarea>
+      <button id="saveNote">Salvar Anotação</button>
+    </div>
+  </div>
+
+  <!-- Script principal -->
+  <script src="../js/relatorio.js"></script>
+</body>
+</html>

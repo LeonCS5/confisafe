@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ConfiSafe - Painel do Usuário</title>
+  <link rel="stylesheet" href="../css/inicial.css">
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="navbar">
+    <div class="logo">
+      <span class="conf">Confi</span><span class="safe">Safe</span>
+    </div>
+    <nav class="menu">
+      <a href="index.html" class="active">Início</a>
+      <!-- <a href="#">Contato</a> -->
+       <a href="#">Configurações</a>
+      <a href="../pages/login.html" class="login-btn">Sair</a>
+    </nav>
+  </header>
+
+  <!-- ===== LAYOUT GERAL ===== -->
+  <div class="layout">
+
+    <!-- ===== MENU LATERAL ===== -->
+    <aside class="sidebar">
+
+      <!-- PERFIL DO USUÁRIO -->
+      <div class="user-profile">
+        <img src="../assets/img/relatorio.png" alt="Foto do Funcionário">
+        <h3>Michael Coutinho</h3>
+        <p>Técnico de Segurança</p>
+      </div>
+
+      <nav class="sidebar-menu">
+        <a href="index.html" class="active"><img src="../img/dashboard.png" alt="Painel"> Painel</a>
+        <a href="#"><img src="../img/capacete.png" alt="Controle de Acesso"> Controle de Acesso</a>
+        <a href="#"><img src="../img/luvas.png" alt="Uso de EPIs"> Uso de EPIs</a>
+        <a href="#"><img src="../img/mascara.png" alt="Monitoramento"> Monitoramento</a>
+        <a href="#"><img src="../img/colete.png" alt="Treinamentos"> Treinamentos</a>
+        <a href="relatorio.html"><img src="../img/relatorio.png" alt="Relatórios"> Relatórios</a>
+      </nav>
+    </aside>
+
+    <!-- ===== CONTEÚDO PRINCIPAL ===== -->
+    <main class="main-content">
+      <section class="welcome">
+        <h2>Bem-vindo ao Painel ConfiSafe</h2>
+        <p>Gerencie a segurança dos trabalhadores e monitore o uso de EPIs em tempo real.</p>
+      </section>
+
+      <!-- ===== ESTATÍSTICAS RÁPIDAS ===== -->
+      <section class="quick-stats">
+        <div class="stat-card">
+          <div class="stat-icon">👥</div>
+          <div class="stat-info">
+            <h3>48</h3>
+            <p>Funcionários Ativos</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">✅</div>
+          <div class="stat-info">
+            <h3>92%</h3>
+            <p>Conformidade com EPI</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⚠️</div>
+          <div class="stat-info">
+            <h3>3</h3>
+            <p>Alertas Ativos</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📊</div>
+          <div class="stat-info">
+            <h3>100%</h3>
+            <p>Sistema Operacional</p>
+          </div>
+        </div>
+      </section>
+
+            <!-- ===== DASHBOARD DE EPIs ===== -->
+      <section class="dashboard">
+        <h2 class="section-title">Equipamentos de Proteção Individual</h2>
+        <div class="cards-grid">
+          <div class="card">
+            <div class="card-icon">
+              <img src="../img/capacete.png" alt="Capacete">
+            </div>
+            <h3>Capacete de Segurança</h3>
+            <p>Protege contra impactos e quedas de objetos em áreas industriais.</p>
+            <div class="card-status">
+              <span class="status-badge compliant">95% Conformidade</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">
+              <img src="../assets/img/controle.png" alt="Luvas">
+            </div>
+            <h3>Luvas de Proteção</h3>
+            <p>Evita cortes, queimaduras e contato com produtos químicos.</p>
+            <div class="card-status">
+              <span class="status-badge warning">88% Conformidade</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">
+              <img src="../img/mascara.png" alt="Máscara">
+            </div>
+            <h3>Máscara Respiratória</h3>
+            <p>Filtra gases nocivos e partículas suspensas no ar.</p>
+            <div class="card-status">
+              <span class="status-badge compliant">96% Conformidade</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">
+              <img src="../img/colete.png" alt="Colete">
+            </div>
+            <h3>Colete Refletivo</h3>
+            <p>Aumenta a visibilidade em ambientes de baixa iluminação.</p>
+            <div class="card-status">
+              <span class="status-badge compliant">94% Conformidade</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== FERRAMENTAS E RELATÓRIOS ===== -->
+      <section class="tools-section">
+        <h2 class="section-title">Ferramentas e Relatórios</h2>
+        <div class="cards-grid">
+          <div class="card">
+            <div class="card-icon">
+              <img src="../img/relatorio.png" alt="Relatórios">
+            </div>
+            <h3>Relatórios de Segurança</h3>
+            <p>Acompanhe estatísticas e relatórios de conformidade.</p>
+            <div class="card-action">
+              <a href="relatorio.html" class="action-btn">Ver Relatórios</a>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">
+              <img src="../img/treinamento.png" alt="Treinamentos">
+            </div>
+            <h3>Treinamentos NR-33</h3>
+            <p>Capacitação para trabalho em espaços confinados.</p>
+            <div class="card-action">
+              <a href="#" class="action-btn">Gerenciar</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== ALERTAS RECENTES ===== -->
+      <section class="recent-alerts">
+        <h2 class="section-title">Alertas Recentes</h2>
+        <div class="alerts-container">
+          <div class="alert-item high">
+            <span class="alert-icon">⚠️</span>
+            <div class="alert-content">
+              <h4>Capacete sem certificação</h4>
+              <p>Setor de Produção - Identificado hoje às 14:30</p>
+            </div>
+            <span class="alert-time">Há 2 horas</span>
+          </div>
+          <div class="alert-item medium">
+            <span class="alert-icon">ℹ️</span>
+            <div class="alert-content">
+              <h4>Treinamento pendente</h4>
+              <p>5 funcionários - NR-33 vencendo em 3 dias</p>
+            </div>
+            <span class="alert-time">Há 1 dia</span>
+          </div>
+          <div class="alert-item low">
+            <span class="alert-icon">📝</span>
+            <div class="alert-content">
+              <h4>Relatório mensal</h4>
+              <p>Relatório de segurança do mês pendente</p>
+            </div>
+            <span class="alert-time">Há 3 dias</span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>&copy; 2025 ConfiSafe - Todos os direitos reservados.</p>
+  </footer>
+
+</body>
+</html>
