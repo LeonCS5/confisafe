@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home | ConfiSafe</title>
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> -->
-  <link rel="stylesheet" href="css/header.css">
-  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
@@ -30,44 +29,96 @@
 
   <section class="carrossel">
     <div class="slider">
-        <div class="slides">
-            <!-- Buttons -->
-            <input type="radio" name="radio-btn" id="radio1">
-            <input type="radio" name="radio-btn" id="radio2">
-            <input type="radio" name="radio-btn" id="radio3">
-            <input type="radio" name="radio-btn" id="radio4">
+      <div class="slides">
+        <!-- Buttons -->
+        <input type="radio" name="radio-btn" id="radio1">
+        <input type="radio" name="radio-btn" id="radio2">
+        <input type="radio" name="radio-btn" id="radio3">
+        <input type="radio" name="radio-btn" id="radio4">
 
-            <!-- Slides -->
-            <div class="slide first">
-                <img src="assets/img/monitoramento.png" alt="monitoramento">
+        <!-- Slide 1 -->
+        <div class="slide first">
+          <div class="slide-content">
+            <div class="slide-text">
+              <h2>Controle Inteligente de Acesso</h2>
+              <p>
+                Acompanhe quem entra e sai dos espaços confinados com crachás RFID ou reconhecimento biométrico,
+                garantindo rastreabilidade e conformidade com a NR-33.
+              </p>
             </div>
-            <div class="slide">
-                <img src="assets/img/controle.png" alt="controle">
+            <div class="slide-image">
+              <img src="assets/img/controle.png" alt="Controle de acesso">
             </div>
-            <div class="slide">
-                <img src="assets/img/epi.png" alt="epi">
-            </div>
-            <div class="slide">
-                <img src="assets/img/relatorio.png" alt="relatorio">
-            </div>
-
-            <!-- navegacao -->
-            <div class="navigation-auto">
-                <div class="auto-btn1"></div>
-                <div class="auto-btn2"></div>
-                <div class="auto-btn3"></div>
-                <div class="auto-btn4"></div>
-            </div>
+          </div>
         </div>
 
-        <div class="manual-navigation">
-            <label for="radio1" class="manual-btn"></label>
-            <label for="radio2" class="manual-btn"></label>
-            <label for="radio3" class="manual-btn"></label>
-            <label for="radio4" class="manual-btn"></label>
+        <!-- Slide 2 -->
+        <div class="slide">
+          <div class="slide-content">
+            <div class="slide-text">
+              <h2>Monitoramento em Tempo Real</h2>
+              <p>
+                Visualize as condições dos espaços confinados em tempo real, com alertas automáticos de segurança
+                e acompanhamento contínuo das operações.
+              </p>
+            </div>
+            <div class="slide-image">
+              <img src="assets/img/monitoramento.png" alt="Monitoramento">
+            </div>
+          </div>
         </div>
+
+        <!-- Slide 3 -->
+        <div class="slide">
+          <div class="slide-content">
+            <div class="slide-text">
+              <h2>Gestão de EPIs Inteligente</h2>
+              <p>
+                Controle a entrega, validade e devolução de EPIs automaticamente, reduzindo desperdícios e
+                aumentando a conformidade com as normas.
+              </p>
+            </div>
+            <div class="slide-image">
+              <img src="assets/img/epi.png" alt="Gestão de EPIs">
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide">
+          <div class="slide-content">
+            <div class="slide-text">
+              <h2>Relatórios Automatizados</h2>
+              <p>
+                Gere relatórios completos com indicadores de segurança, rastreabilidade e conformidade em poucos
+                cliques.
+              </p>
+            </div>
+            <div class="slide-image">
+              <img src="assets/img/relatorio.png" alt="Relatórios">
+            </div>
+          </div>
+        </div>
+
+        <!-- Navegação automática -->
+        <div class="navigation-auto">
+          <div class="auto-btn1"></div>
+          <div class="auto-btn2"></div>
+          <div class="auto-btn3"></div>
+          <div class="auto-btn4"></div>
+        </div>
+      </div>
+
+      <!-- Navegação manual -->
+      <div class="manual-navigation">
+        <label for="radio1" class="manual-btn"></label>
+        <label for="radio2" class="manual-btn"></label>
+        <label for="radio3" class="manual-btn"></label>
+        <label for="radio4" class="manual-btn"></label>
+      </div>
     </div>
   </section>
+
 
   <section class="problem-section">
     <h2 class="section-title">O Problema: Espaços Confinados</h2>
