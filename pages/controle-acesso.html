@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConfiSafe - Controle de Acesso</title>
+    <link rel="stylesheet" href="../css/controle-acesso.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <span class="conf">Confi</span><span class="safe">Safe</span>
+        </div>
+        <nav class="menu">
+            <a href="../pages/inicial.html">Início</a>
+            <a href="#">Configurações</a>
+            <a href="../pages/login.html" class="login-btn">Sair</a>
+        </nav>
+    </header>
+
+    <div class="layout">
+
+        <aside class="sidebar">
+            <div class="user-profile">
+                <img src="../assets/img/controle.png" alt="Foto do Funcionário" id="userPhoto">
+                <h3 id="userName">Michael Coutinho</h3>
+                <p id="userRole">Técnico de Segurança</p>
+            </div>
+
+            <nav class="sidebar-menu" aria-label="Menu principal">
+                <a href="../pages/inicial.html" class="menu-item">
+                    <img src="../img/dashboard.png" alt="" aria-hidden="true"> 
+                    <span>Painel Geral</span>
+                </a>
+                <a href="../pages/controle-acesso.html" class="menu-item active">
+                    <img src="../img/capacete.png" alt="" aria-hidden="true"> 
+                    <span>Controle de Acesso</span>
+                </a>
+                <a href="../pages/epis.html" class="menu-item">
+                    <img src="../img/luvas.png" alt="" aria-hidden="true"> 
+                    <span>Monitoramento de EPIs</span>
+                </a>
+                <a href="../pages/monitoramento.html" class="menu-item">
+                    <img src="../icons/camera-cftv.png" alt="" aria-hidden="true"> 
+                    <span>Monitoramento</span>
+                </a>
+                <a href="../pages/treinamentos.html" class="menu-item">
+                    <img src="../img/colete.png" alt="" aria-hidden="true"> 
+                    <span>Treinamentos</span>
+                </a>
+                <a href="../pages/relatorio.html" class="menu-item">
+                    <img src="../img/relatorio.png" alt="" aria-hidden="true"> 
+                    <span>Relatórios</span>
+                </a>
+            </nav>
+        </aside>
+
+        <main class="main-content" id="main-content">
+            
+            <header class="page-header">
+                <h1>Controle de Acesso</h1>
+                <p class="page-description">Gerencie e monitore os acessos aos sistemas e áreas restritas da empresa</p>
+                
+                <nav class="breadcrumb" aria-label="Navegação estrutural">
+                    <ol>
+                        <li><a href="../pages/inicial.html">Painel</a></li>
+                        <li aria-current="page">Controle de Acesso</li>
+                    </ol>
+                </nav>
+            </header>
+
+            <section class="daily-summary" aria-labelledby="daily-summary-title">
+                <h2 id="daily-summary-title" class="visually-hidden">Resumo do Dia</h2>
+                
+                <div class="summary-cards">
+                    <div class="summary-card">
+                        <div class="summary-icon" aria-hidden="true">👥</div>
+                        <div class="summary-content">
+                            <span class="summary-number">156</span>
+                            <span class="summary-label">Usuários Ativos</span>
+                            <span class="summary-trend positive">+5%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-card">
+                        <div class="summary-icon" aria-hidden="true">🚪</div>
+                        <div class="summary-content">
+                            <span class="summary-number">42</span>
+                            <span class="summary-label">Acessos Hoje</span>
+                            <span class="summary-trend">0%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-card warning">
+                        <div class="summary-icon" aria-hidden="true">⚠️</div>
+                        <div class="summary-content">
+                            <span class="summary-number">3</span>
+                            <span class="summary-label">Tentativas Bloqueadas</span>
+                            <span class="summary-trend negative">+50%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-card">
+                        <div class="summary-icon" aria-hidden="true">✅</div>
+                        <div class="summary-content">
+                            <span class="summary-number">98%</span>
+                            <span class="summary-label">Conformidade</span>
+                            <span class="summary-trend positive">+2%</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="recent-access" aria-labelledby="recent-access-title">
+                <header class="section-header">
+                    <h2 id="recent-access-title">Acessos Recentes</h2>
+                    <div class="section-actions">
+                        <button class="btn-secondary" onclick="AppActions.exportAccessData()">Exportar</button>
+                        <button class="btn-primary" onclick="AppActions.refreshAccessList()">Atualizar</button>
+                    </div>
+                </header>
+                
+                <div class="access-table-container">
+                    <table class="access-table" aria-describedby="recent-access-title">
+                        <thead>
+                            <tr>
+                                <th scope="col">Funcionário</th>
+                                <th scope="col">Área</th>
+                                <th scope="col">Data/Hora</th>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">Status</th>
+                                <th scope="col" aria-label="Ações">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="employee-info">
+                                        <img src="../assets/img/user1.png" alt="" class="employee-avatar" aria-hidden="true">
+                                        <div>
+                                            <strong>João Silva</strong>
+                                            <span>Operador de Máquinas</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Setor de Produção</td>
+                                <td>
+                                    <time datetime="2024-10-28T14:32:00">28/10/2024 14:32</time>
+                                </td>
+                                <td><span class="badge badge-entry">Entrada</span></td>
+                                <td><span class="status status-success">Permitido</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon" title="Visualizar detalhes" onclick="AppActions.viewAccessDetails(1)">👁️</button>
+                                        <button class="btn-icon" title="Bloquear acesso" onclick="AppActions.blockAccess(1)">🚫</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    <div class="employee-info">
+                                        <img src="../assets/img/user2.png" alt="" class="employee-avatar" aria-hidden="true">
+                                        <div>
+                                            <strong>Maria Santos</strong>
+                                            <span>Técnica de Laboratório</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Laboratório Químico</td>
+                                <td>
+                                    <time datetime="2024-10-28T14:25:00">28/10/2024 14:25</time>
+                                </td>
+                                <td><span class="badge badge-entry">Entrada</span></td>
+                                <td><span class="status status-success">Permitido</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon" title="Visualizar detalhes" onclick="AppActions.viewAccessDetails(2)">👁️</button>
+                                        <button class="btn-icon" title="Bloquear acesso" onclick="AppActions.blockAccess(2)">🚫</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <tr class="access-denied">
+                                <td>
+                                    <div class="employee-info">
+                                        <img src="../assets/img/user3.png" alt="" class="employee-avatar" aria-hidden="true">
+                                        <div>
+                                            <strong>Carlos Oliveira</strong>
+                                            <span>Auxiliar de Manutenção</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Sala de Servidores</td>
+                                <td>
+                                    <time datetime="2024-10-28T14:18:00">28/10/2024 14:18</time>
+                                </td>
+                                <td><span class="badge badge-entry">Entrada</span></td>
+                                <td><span class="status status-error">Negado</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon" title="Visualizar detalhes" onclick="AppActions.viewAccessDetails(3)">👁️</button>
+                                        <button class="btn-icon" title="Liberar acesso" onclick="AppActions.unblockAccess(3)">✅</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    <div class="employee-info">
+                                        <img src="../assets/img/user4.png" alt="" class="employee-avatar" aria-hidden="true">
+                                        <div>
+                                            <strong>Ana Costa</strong>
+                                            <span>Supervisora</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>Almoxarifado</td>
+                                <td>
+                                    <time datetime="2024-10-28T14:10:00">28/10/2024 14:10</time>
+                                </td>
+                                <td><span class="badge badge-exit">Saída</span></td>
+                                <td><span class="status status-success">Permitido</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-icon" title="Visualizar detalhes" onclick="AppActions.viewAccessDetails(4)">👁️</button>
+                                        <button class="btn-icon" title="Bloquear acesso" onclick="AppActions.blockAccess(4)">🚫</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <nav class="pagination" aria-label="Navegação de páginas">
+                    <button class="pagination-btn" disabled aria-label="Página anterior">‹ Anterior</button>
+                    <button class="pagination-btn active" aria-label="Página 1, página atual">1</button>
+                    <button class="pagination-btn" aria-label="Página 2">2</button>
+                    <button class="pagination-btn" aria-label="Página 3">3</button>
+                    <span class="pagination-ellipsis" aria-hidden="true">...</span>
+                    <button class="pagination-btn" aria-label="Página 10">10</button>
+                    <button class="pagination-btn" aria-label="Próxima página">Próxima ›</button>
+                </nav>
+            </section>
+
+            <section class="alerts-section" aria-labelledby="alerts-title">
+                <header class="section-header">
+                    <h2 id="alerts-title">Alertas de Segurança</h2>
+                    <span class="badge badge-warning">3 novos</span>
+                </header>
+                
+                <div class="alerts-list">
+                    <div class="alert-item alert-high">
+                        <div class="alert-icon" aria-hidden="true">⚠️</div>
+                        <div class="alert-content">
+                            <h3>Tentativa de Acesso Não Autorizado</h3>
+                            <p>Usuário tentou acessar área restrita sem permissão adequada</p>
+                            <div class="alert-meta">
+                                <span class="alert-time">Há 15 minutos</span>
+                                <span class="alert-location">Portão Principal</span>
+                            </div>
+                        </div>
+                        <button class="alert-action" onclick="AppActions.resolveAlert(1)">Resolver</button>
+                    </div>
+                    
+                    <div class="alert-item alert-medium">
+                        <div class="alert-icon" aria-hidden="true">🔍</div>
+                        <div class="alert-content">
+                            <h3>Horário de Acesso Incomum</h3>
+                            <p>Acesso detectado fora do horário comercial estabelecido</p>
+                            <div class="alert-meta">
+                                <span class="alert-time">Há 2 horas</span>
+                                <span class="alert-location">Setor Administrativo</span>
+                            </div>
+                        </div>
+                        <button class="alert-action" onclick="AppActions.resolveAlert(2)">Resolver</button>
+                    </div>
+                    
+                    <div class="alert-item alert-low">
+                        <div class="alert-icon" aria-hidden="true">ℹ️</div>
+                        <div class="alert-content">
+                            <h3>Credencial Próxima do Vencimento</h3>
+                            <p>3 credenciais de acesso expiram nos próximos 7 dias</p>
+                            <div class="alert-meta">
+                                <span class="alert-time">Hoje</span>
+                                <span class="alert-location">Sistema Principal</span>
+                            </div>
+                        </div>
+                        <button class="alert-action" onclick="AppActions.resolveAlert(3)">Ver Detalhes</button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>&copy; 2025 ConfiSafe - Todos os direitos reservados.</p>
+            
+        </div>
+    </footer>
+
+    <script src="../js/controle-acesso.js"></script>
+    <script src="../js/interface-dashboard.js"></script>
+    
+</body>
+</html>

@@ -1,107 +1,386 @@
-/* =========================================================
-   ===== MENU LATERAL (SIDEBAR) =====
-   ========================================================= */
-
-/* ===== Estrutura da Sidebar ===== */
-.sidebar {
-  position: fixed;
-  top: 70px; /* Espaço para o header fixo */
-  left: 0;
-  width: 240px;
-  height: calc(100vh - 70px); /* Ocupa o restante da altura da tela */
-  background: linear-gradient(180deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
-  display: flex;
-  flex-direction: column;
-  padding-top: 25px;
-  box-shadow: 3px 0 10px rgba(0, 0, 0, 0.1);
-  overflow-y: auto; /* Permite rolagem caso tenha muito conteúdo */
-  z-index: 100;
+/* ===== HEADER  geral ===== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: var(--white);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-/* ===== Menu Interno da Sidebar ===== */
+.logo {
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.logo .conf {
+    color: var(--dark-blue);
+}
+
+.logo .safe {
+    color: var(--light-blue);
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    transition: var(--transition);
+    padding: 8px 16px;
+    border-radius: 6px;
+}
+
+.menu a:hover,
+.menu a:focus {
+    color: var(--light-blue);
+    background: rgba(22, 108, 199, 0.1);
+}
+
+.login-btn {
+    background: var(--light-blue);
+    color: var(--white) !important;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: var(--transition);
+}
+
+.login-btn:hover,
+.login-btn:focus {
+    background: var(--dark-blue);
+}
+
+
+
+
+
+
+
+
+
+/* ===== FOOTER padrao  ===== */
+.main-footer {
+    background: var(--white);
+    color: var(--primary-blue);
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9rem;
+    margin-top: auto;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-content p:first-child {
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.footer-content p:last-child {
+    color: var(--text-light);
+    font-size: 0.8rem;
+}
+
+
+
+
+
+
+
+
+/* menu lateral css para ficar padrao */
+/* ===== VARIÁVEIS CSS ===== */
+:root {
+  --primary-blue: #166cc7;
+  --dark-blue: #0a3d7e;
+  --light-blue: #1e90ff;
+  --background: #f4f7fb;
+  --text-dark: #333;
+  --text-light: #555;
+  --text-lighter: #666;
+  --white: #ffffff;
+  --shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.15);
+  --border-radius: 12px;
+  --transition: all 0.3s ease;
+}
+
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-dark);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* ===== LAYOUT GERAL ===== */
+.layout {
+  display: flex;
+  flex: 1;
+  min-height: calc(100vh - 130px);
+}
+
+/* ===== MENU LATERAL ===== */
+.sidebar {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  width: 240px;
+  height: calc(100vh - 70px);
+  background: linear-gradient(180deg, var(--primary-blue), var(--dark-blue));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 20px 15px 50px 15px;
+  box-shadow: 3px 0 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  z-index: 999;
+}
+
+/* Perfil do usuário */
+.user-profile {
+  text-align: center;
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.user-profile img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #cce4ff;
+  background: #f0f0f0;
+  margin-bottom: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.user-profile h3 {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.user-profile p {
+  color: #cce4ff;
+  font-size: 0.85rem;
+}
+
+/* Itens do menu lateral */
 .sidebar-menu {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 0 15px;
+  gap: 8px;
 }
 
-/* ===== Links do Menu ===== */
 .sidebar-menu a {
   display: flex;
   align-items: center;
   gap: 12px;
+  padding: 10px 14px;
   color: #f1f7ff;
   text-decoration: none;
   font-weight: 500;
   font-size: 0.95rem;
-  padding: 12px 15px;
-  border-radius: 10px;
-  position: relative;
-  overflow: hidden;
+  border-radius: 8px;
   transition: var(--transition);
 }
 
-/* ===== Ícones dos Itens ===== */
 .sidebar-menu a img {
   width: 22px;
   height: 22px;
   filter: brightness(0) invert(1);
-  transition: var(--transition);
 }
 
-/* ===== Efeito de Brilho ao Passar o Mouse ===== */
-.sidebar-menu a::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.1);
-  transition: left 0.4s ease;
-  z-index: 0;
-}
-
-/* ===== Hover e Foco ===== */
-.sidebar-menu a:hover::before,
-.sidebar-menu a:focus::before {
-  left: 0;
-}
-
-.sidebar-menu a:hover,
-.sidebar-menu a:focus {
-  transform: translateX(6px);
-  color: var(--white);
-  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.15);
-  outline: none;
-}
-
-.sidebar-menu a:hover img,
-.sidebar-menu a:focus img {
-  transform: scale(1.15);
-}
-
-/* ===== Item Ativo ===== */
+/* Estado ativo (selecionado) */
 .sidebar-menu a.active {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.18);
   border-left: 4px solid #cce4ff;
   font-weight: 600;
 }
 
-/* =========================================================
-   ===== CONTEÚDO PRINCIPAL =====
-   ========================================================= */
+/* Efeitos hover */
+.sidebar-menu a:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateX(5px);
+}
 
+/* ===== CONTEÚDO PRINCIPAL ===== */
 .main-content {
   flex: 1;
   padding: 40px;
-  margin-left: 240px; /* Compensa a largura da sidebar fixa */
-  margin-top: 70px;   /* Compensa o header fixo */
+  margin-left: 240px;
+  margin-top: 70px;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 220px;
+  }
+  
+  .main-content {
+    margin-left: 220px;
+    padding: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+  }
+  
+  .main-content {
+    margin-left: 200px;
+    padding: 25px 20px;
+  }
+}
+
+@media (max-width: 700px) {
+  .sidebar {
+    display: none;
+  }
+  
+  .main-content {
+    margin-left: 0;
+    padding: 20px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 15px 10px;
+  }
+  
+  .user-profile img {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .user-profile h3 {
+    font-size: 0.9rem;
+  }
+  
+  .user-profile p {
+    font-size: 0.8rem;
+  }
+  
+  .sidebar-menu a {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
 }
 
 
-/* ===== ÚLTIMO ITEM DO MENU ===== */
-.sidebar-menu a:last-child {
-  margin-bottom: 40px; 
-}
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConfiSafe - Sistema</title>
+    <link rel="stylesheet" href="../css/sidebar.css">
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="navbar">
+        <div class="logo">
+            <span class="conf">Confi</span><span class="safe">Safe</span>
+        </div>
+        <nav class="menu">
+            <a href="../pages/inicial.html">Início</a>
+            <a href="#">Configurações</a>
+            <a href="../pages/login.html" class="login-btn">Sair</a>
+        </nav>
+    </header>
+
+    <!-- ===== LAYOUT GERAL ===== -->
+    <div class="layout">
+
+        <!-- ===== MENU LATERAL ===== -->
+        <aside class="sidebar">
+            <div class="user-profile">
+                <img src="../assets/img/controle.png" alt="Foto do Funcionário" id="userPhoto">
+                <h3 id="userName">Michael Coutinho</h3>
+                <p id="userRole">Técnico de Segurança</p>
+            </div>
+
+            <nav class="sidebar-menu" aria-label="Menu principal">
+                <a href="../pages/inicial.html" class="menu-item">
+                    <img src="../img/dashboard.png" alt="Painel" aria-hidden="true"> 
+                    <span>Painel</span>
+                </a>
+                <a href="../pages/controle-acesso.html" class="menu-item active">
+                    <img src="../img/capacete.png" alt="Controle de Acesso" aria-hidden="true"> 
+                    <span>Controle de Acesso</span>
+                </a>
+                <a href="../pages/epis.html" class="menu-item">
+                    <img src="../img/luvas.png" alt="Uso de EPIs" aria-hidden="true"> 
+                    <span>Uso de EPIs</span>
+                </a>
+                <a href="../pages/monitoramento.html" class="menu-item">
+                    <img src="../icons/camera-cftv.png" alt="Monitoramento" aria-hidden="true"> 
+                    <span>Monitoramento</span>
+                </a>
+                <a href="../pages/treinamentos.html" class="menu-item">
+                    <img src="../img/colete.png" alt="Treinamentos" aria-hidden="true"> 
+                    <span>Treinamentos</span>
+                </a>
+                <a href="../pages/relatorio.html" class="menu-item">
+                    <img src="../img/relatorio.png" alt="Relatórios" aria-hidden="true"> 
+                    <span>Relatórios</span>
+                </a>
+            </nav>
+        </aside>
+
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>&copy; 2025 ConfiSafe - Todos os direitos reservados.</p>
+            
+        </div>
+    </footer>
+
+    <script src="../js/sidebar.js"></script>
+    
+</body>
+</html>
+
+

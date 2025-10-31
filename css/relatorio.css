@@ -94,44 +94,37 @@ body {
   outline-offset: 2px;
 }
 
-/* ===== LAYOUT ===== */
-.layout {
-  display: flex;
-  flex: 1;
-  min-height: calc(100vh - 130px);
-}
-
-/* ===== SIDEBAR ===== */
-.sidebar {
-  width: 240px;
-  background: linear-gradient(180deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
-  padding-top: 25px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 3px 0 10px rgba(0, 0, 0, 0.1);
-  animation: slideIn 0.5s ease;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
-
-/* Animação suave de entrada */
-@keyframes slideIn {
-  from {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
 
 /* ===== PERFIL DO USUÁRIO ===== */
+/* =========================================================
+   MENU LATERAL
+   ========================================================= */
+   
+/* =========================================================
+   MENU LATERAL
+   ========================================================= */
+.sidebar {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  width: 240px;
+  height: calc(100vh - 70px);
+  background: linear-gradient(180deg, var(--primary-blue), var(--dark-blue));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 20px 15px 50px 15px;
+  box-shadow: 3px 0 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  z-index: 999;
+}
+
+/* Perfil do usuário */
 .user-profile {
   text-align: center;
   margin-bottom: 25px;
-  padding: 0 15px 25px 15px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .user-profile img {
@@ -140,154 +133,54 @@ body {
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid #cce4ff;
-  margin-bottom: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  transition: var(--transition);
   background: #f0f0f0;
-}
-
-.user-profile img:hover {
-  transform: scale(1.08);
+  margin-bottom: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 }
 
 .user-profile h3 {
-  color: var(--white);
-  font-size: 1.1rem;
+  color: #fff;
+  font-size: 1rem;
   font-weight: 600;
-  margin-bottom: 4px;
 }
 
 .user-profile p {
   color: #cce4ff;
-  font-size: 0.9rem;
-  margin: 0;
+  font-size: 0.85rem;
 }
 
-/* 
-   ===== MENU LATERAL (SIDEBAR) =====
-  */
-
-/* ===== Estrutura da Sidebar (sem alterações, está bom) ===== */
-.sidebar {
-  position: fixed;
-  top: 70px;
-  left: 0;
-  width: 240px;
-  height: calc(100vh - 70px);
-  background: linear-gradient(180deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
-  display: flex;
-  flex-direction: column;
-  padding-top: 25px;
-  box-shadow: 3px 0 10px rgba(0, 0, 0, 0.1);
-  overflow-y: auto;
-  z-index: 100;
-}
-
-/* ===== Menu Interno da Sidebar (sem alterações) ===== */
+/* Itens do menu lateral */
 .sidebar-menu {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 0 15px;
+  gap: 8px;
 }
 
-/* ===== Links do Menu (ajustes) ===== */
 .sidebar-menu a {
   display: flex;
   align-items: center;
   gap: 12px;
+  padding: 10px 14px;
   color: #f1f7ff;
   text-decoration: none;
   font-weight: 500;
   font-size: 0.95rem;
-  padding: 12px 15px;
-  border-radius: 10px;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease; /* Transição mais geral para todas as propriedades */
-  z-index: 1; /* Garante que o texto esteja acima do ::before */
+  border-radius: 8px;
+  transition: var(--transition);
 }
 
-/* ===== Ícones dos Itens (sem alterações) ===== */
 .sidebar-menu a img {
   width: 22px;
   height: 22px;
   filter: brightness(0) invert(1);
-  transition: all 0.3s ease;
 }
 
-/* ===== Efeito de Brilho ao Passar o Mouse (ajustes) ===== */
-.sidebar-menu a::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.1);
-  transition: left 0.4s ease;
-  z-index: 0;
-}
-
-/* ===== Hover e Foco (ajustes: remove o transform translateX e o box-shadow para o hover geral) ===== */
-.sidebar-menu a:not(.active):hover::before, /* Aplica o brilho apenas se não estiver ativo */
-.sidebar-menu a:not(.active):focus::before {
-  left: 0;
-}
-
-.sidebar-menu a:not(.active):hover, /* Apenas aplica transform/shadow se não estiver ativo */
-.sidebar-menu a:not(.active):focus {
-  /* transform: translateX(6px); -- Removido para evitar que o ativo "saia do lugar" */
-  color: var(--white);
-  /* box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.15); -- Removido para evitar confusão com o ativo */
-  outline: none;
-  background: rgba(255, 255, 255, 0.05); /* Um background leve no hover, se não for ativo */
-}
-
-.sidebar-menu a:not(.active):hover img,
-.sidebar-menu a:not(.active):focus img {
-  transform: scale(1.15);
-}
-
-
-/* ===== Item Ativo (mantido, mas com ajustes sutis de transição) ===== */
+/* Estado ativo (selecionado) */
 .sidebar-menu a.active {
-  background: rgba(255, 255, 255, 0.12); /* Fundo sólido para o ativo */
+  background: rgba(255, 255, 255, 0.18);
   border-left: 4px solid #cce4ff;
   font-weight: 600;
-  transform: translateX(0); /* Garante que o item ativo não se mova */
-  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.15); /* Adiciona o box-shadow aqui, se desejar */
-  color: var(--white); /* Garante que o texto fique branco */
-  /* Remova o ::before no ativo para que o background ativo seja a cor principal */
-  /* Se você quiser o brilho ::before também no ativo, pode deixar, mas visualmente pode confundir */
 }
-
-.sidebar-menu a.active::before {
-    left: -100%; /* Garante que o brilho do ::before não apareça quando ativo */
-}
-
-
-   /* ===== CONTEÚDO PRINCIPAL ===== */
-
-.main-content {
-  flex: 1;
-  padding: 40px;
-  margin-left: 240px; /* Compensa a largura da sidebar fixa */
-  margin-top: 70px;   /* Compensa o header fixo */
-  padding: 0 15px ; 
-}
-
-/* ===== ÚLTIMO ITEM DO MENU ===== */
-.sidebar-menu a:last-child {
-  margin-bottom: 40px; 
-}
-
-
-
-
-
-
-
 
 
 
@@ -295,6 +188,9 @@ body {
 .main-content {
   flex: 1;
   padding: 40px;
+  margin-left: 240px;
+  margin-top: 70px;
+  padding: 0 15px;
   animation: fadeIn 0.5s ease;
 }
 
@@ -592,121 +488,6 @@ footer {
   }
 }
 
-/* ===== RESPONSIVIDADE ===== */
-@media (max-width: 1024px) {
-  .sidebar {
-    width: 220px;
-  }
-  
-  .main-content {
-    padding: 30px;
-  }
-}
-
-@media (max-width: 768px) {
-  .navbar {
-    padding: 15px 20px;
-    flex-wrap: wrap;
-  }
-  
-  .menu {
-    order: 3;
-    width: 100%;
-    margin-top: 15px;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  
-  .menu a {
-    margin: 0 5px;
-    font-size: 0.9rem;
-  }
-  
-  .sidebar {
-    width: 200px;
-  }
-  
-  .main-content {
-    padding: 25px 20px;
-  }
-  
-  .report-cards {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-  }
-  
-  .modal-content {
-    padding: 20px;
-    margin: 20px;
-  }
-}
-
-@media (max-width: 700px) {
-  .sidebar {
-    display: none;
-  }
-  
-  .main-content {
-    padding: 20px 15px;
-  }
-}
-
-@media (max-width: 480px) {
-  .navbar {
-    padding: 12px 15px;
-  }
-  
-  .logo {
-    font-size: 1.4rem;
-  }
-  
-  .menu a {
-    font-size: 0.85rem;
-    margin: 0 3px;
-    padding: 5px 8px;
-  }
-  
-  .welcome h2 {
-    font-size: 1.4rem;
-  }
-  
-  .welcome p {
-    font-size: 1rem;
-  }
-  
-  .report-cards {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-  
-  .chart-section {
-    padding: 20px 15px;
-    margin-bottom: 40px;
-  }
-  
-  .main-content {
-    padding: 15px 10px;
-  }
-  
-  .modal-content {
-    padding: 15px;
-    margin: 10px;
-  }
-  
-  .modal-metrics {
-    padding: 15px;
-    gap: 8px;
-  }
-  
-  .metric-item {
-    padding: 6px 0;
-  }
-}
-
-
-
 /* ===== KPIs ===== */
 .kpi-section {
   background: white;
@@ -777,8 +558,56 @@ footer {
   font-weight: 500;
 }
 
-/* Responsividade para KPIs */
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 220px;
+  }
+  
+  .main-content {
+    padding: 30px;
+  }
+}
+
 @media (max-width: 768px) {
+  .navbar {
+    padding: 15px 20px;
+    flex-wrap: wrap;
+  }
+  
+  .menu {
+    order: 3;
+    width: 100%;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .menu a {
+    margin: 0 5px;
+    font-size: 0.9rem;
+  }
+  
+  .sidebar {
+    width: 200px;
+  }
+  
+  .main-content {
+    padding: 25px 20px;
+  }
+  
+  .report-cards {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  
+  .modal-content {
+    padding: 20px;
+    margin: 20px;
+  }
+  
   .kpi-cards {
     grid-template-columns: 1fr;
   }
@@ -788,8 +617,68 @@ footer {
   }
 }
 
+@media (max-width: 700px) {
+  .sidebar {
+    display: none;
+  }
+  
+  .main-content {
+    padding: 20px 15px;
+    margin-left: 0;
+  }
+}
 
-
+@media (max-width: 480px) {
+  .navbar {
+    padding: 12px 15px;
+  }
+  
+  .logo {
+    font-size: 1.4rem;
+  }
+  
+  .menu a {
+    font-size: 0.85rem;
+    margin: 0 3px;
+    padding: 5px 8px;
+  }
+  
+  .welcome h2 {
+    font-size: 1.4rem;
+  }
+  
+  .welcome p {
+    font-size: 1rem;
+  }
+  
+  .report-cards {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .chart-section {
+    padding: 20px 15px;
+    margin-bottom: 40px;
+  }
+  
+  .main-content {
+    padding: 15px 10px;
+  }
+  
+  .modal-content {
+    padding: 15px;
+    margin: 10px;
+  }
+  
+  .modal-metrics {
+    padding: 15px;
+    gap: 8px;
+  }
+  
+  .metric-item {
+    padding: 6px 0;
+  }
+}
 
 /* ===== ACESSIBILIDADE ===== */
 @media (prefers-reduced-motion: reduce) {

@@ -1,39 +1,35 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const menuItems = document.querySelectorAll('.sidebar-menu .menu-item'); // Use uma classe comum para os itens
+// ===== CONFISAFE - DASHBOARD JS =====
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("✅ Painel ConfiSafe carregado.");
 
-    menuItems.forEach(item => {
-        item.addEventListener('click', function(event) {
-            // Remove a classe 'active' de todos os itens
-            menuItems.forEach(i => i.classList.remove('active'));
+  const menuLinks = document.querySelectorAll(".sidebar-menu a");
+  const logoutBtn = document.getElementById("logoutBtn");
 
-            // Adiciona a classe 'active' apenas ao item clicado
-            this.classList.add('active');
+  // === Detecta página atual e marca o menu ativo ===
+  const currentPage = window.location.pathname.split("/").pop(); // Ex: inicial.html
+  menuLinks.forEach((link) => {
+    const linkPage = link.getAttribute("href")?.split("/").pop();
+    if (linkPage === currentPage) {
+      link.classList.add("active");
+    } else {
+      link.classList.remove("active");
+    }
+  });
 
-            // Se você estiver usando navegação SPA (Single Page Application)
-            // e não quer que a página recarregue ou mude o hash da URL imediatamente,
-            // você pode prevenir o comportamento padrão do link:
-            // event.preventDefault();
-
-            // Aqui você pode adicionar a lógica para carregar o conteúdo correspondente
-            // (ex: mudar o conteúdo da área principal baseado no href do link)
-            console.log(`Menu clicado: ${this.textContent.trim()}`);
-        });
+  // === Clique nos links para atualizar o ativo ===
+  menuLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      menuLinks.forEach((l) => l.classList.remove("active"));
+      link.classList.add("active");
     });
+  });
 
-    // Opcional: Para manter o item ativo mesmo após um refresh se a URL for SPA
-    // ou se você tiver um estado inicial.
-    // Isso é mais complexo e geralmente envolve verificar a URL atual
-    // e aplicar a classe 'active' ao item correspondente.
-    // Exemplo simplificado (para URLs com hash):
-    // const currentHash = window.location.hash;
-    // if (currentHash) {
-    //     const activeItem = document.querySelector(`.sidebar-menu a[href="${currentHash}"]`);
-    //     if (activeItem) {
-    //         menuItems.forEach(i => i.classList.remove('active'));
-    //         activeItem.classList.add('active');
-    //     }
-    // } else {
-    //    // Ativa o primeiro item por padrão se não houver hash e nenhum ativo inicial
-    //    // menuItems[0].classList.add('active');
-    // }
+  // === Botão de sair ===
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      alert("Você saiu do sistema."); // Trocar depois por lógica real de logout
+      window.location.href = "../pages/login.html";
+    });
+  }
 });
