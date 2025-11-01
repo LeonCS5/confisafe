@@ -8,19 +8,22 @@
 </head>
 <body>
 
+    <!-- ===== HEADER ===== -->
     <header class="navbar">
         <div class="logo">
             <span class="conf">Confi</span><span class="safe">Safe</span>
         </div>
         <nav class="menu">
-            <a href="../pages/inicial.html">Início</a>
+            <a href="../pages/inicial.html" class="active">Início</a>
             <a href="#">Configurações</a>
-            <a href="../pages/login.html" class="login-btn">Sair</a>
+            <a href="../pages/login.html" class="login-btn" id="logoutBtn">Sair</a>
         </nav>
     </header>
 
+    <!-- ===== LAYOUT GERAL ===== -->
     <div class="layout">
 
+        <!-- ===== MENU LATERAL ===== -->
         <aside class="sidebar">
             <div class="user-profile">
                 <img src="../assets/img/controle.png" alt="Foto do Funcionário" id="userPhoto">
@@ -28,31 +31,13 @@
                 <p id="userRole">Técnico de Segurança</p>
             </div>
 
-            <nav class="sidebar-menu" aria-label="Menu principal">
-                <a href="../pages/inicial.html" class="menu-item">
-                    <img src="../img/dashboard.png" alt="" aria-hidden="true"> 
-                    <span>Painel Geral</span>
-                </a>
-                <a href="../pages/controle-acesso.html" class="menu-item active">
-                    <img src="../img/capacete.png" alt="" aria-hidden="true"> 
-                    <span>Controle de Acesso</span>
-                </a>
-                <a href="../pages/epis.html" class="menu-item">
-                    <img src="../img/luvas.png" alt="" aria-hidden="true"> 
-                    <span>Monitoramento de EPIs</span>
-                </a>
-                <a href="../pages/monitoramento.html" class="menu-item">
-                    <img src="../icons/camera-cftv.png" alt="" aria-hidden="true"> 
-                    <span>Monitoramento</span>
-                </a>
-                <a href="../pages/treinamentos.html" class="menu-item">
-                    <img src="../img/colete.png" alt="" aria-hidden="true"> 
-                    <span>Treinamentos</span>
-                </a>
-                <a href="../pages/relatorio.html" class="menu-item">
-                    <img src="../img/relatorio.png" alt="" aria-hidden="true"> 
-                    <span>Relatórios</span>
-                </a>
+            <nav class="sidebar-menu">
+                <a href="../pages/inicial.html"><img src="../img/dashboard.png" alt=""> Painel</a>
+                <a href="../pages/controle-acesso.html" class="active"><img src="../img/capacete.png" alt=""> Controle de Acesso</a>
+                <a href="../pages/use_epis.html"><img src="../img/luvas.png" alt=""> Monitoramento de EPIs</a>
+                <!-- <a href="#"><img src="../icons/camera-cftv.png" alt=""> Monitoramento</a> -->
+                <a href="../pages/"><img src="../img/colete.png" alt=""> Treinamentos</a>
+                <a href="../pages/relatorio.html"><img src="../img/relatorio.png" alt=""> Relatórios</a>
             </nav>
         </aside>
 
@@ -298,7 +283,6 @@
     <footer class="main-footer">
         <div class="footer-content">
             <p>&copy; 2025 ConfiSafe - Todos os direitos reservados.</p>
-            
         </div>
     </footer>
 

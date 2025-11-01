@@ -187,6 +187,12 @@ body {
   font-weight: 600;
 }
 
+/* Efeitos hover */
+.sidebar-menu a:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateX(5px);
+}
+
 /* ===== CONTEÚDO PRINCIPAL ===== */
 .main-content {
   flex: 1;

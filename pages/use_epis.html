@@ -5,54 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ConfiSafe - Monitoramento de EPIs</title>
     <link rel="stylesheet" href="../css/use_epis.css">
-    </head>
+</head>
 <body>
 
+    <!-- ===== HEADER ===== -->
     <header class="navbar">
         <div class="logo">
             <span class="conf">Confi</span><span class="safe">Safe</span>
         </div>
         <nav class="menu">
-            <a href="../pages/inicial.html">Início</a>
+            <a href="../pages/inicial.html" class="active">Início</a>
             <a href="#">Configurações</a>
-            <a href="../pages/login.html" class="login-btn">Sair</a>
+            <a href="../pages/login.html" class="login-btn" id="logoutBtn">Sair</a>
         </nav>
     </header>
 
+    <!-- ===== LAYOUT GERAL ===== -->
     <div class="layout">
 
+        <!-- ===== MENU LATERAL ===== -->
         <aside class="sidebar">
             <div class="user-profile">
                 <img src="../assets/img/controle.png" alt="Foto do Funcionário" id="userPhoto">
                 <h3 id="userName">Michael Coutinho</h3>
-                <p id="userRole">Supervisor de Segurança</p>
+                <p id="userRole">Técnico de Segurança</p>
             </div>
 
-            <nav class="sidebar-menu" aria-label="Menu principal">
-                <a href="../pages/inicial.html" class="menu-item">
-                    <img src="../img/dashboard.png" alt="" aria-hidden="true"> 
-                    <span>Painel Geral</span>
-                </a>
-                <a href="../pages/controle-acesso.html" class="menu-item">
-                    <img src="../img/capacete.png" alt="" aria-hidden="true"> 
-                    <span>Controle de Acesso</span>
-                </a>
-                <a href="../pages/epis.html" class="menu-item active">
-                    <img src="../img/luvas.png" alt="" aria-hidden="true"> 
-                    <span>Monitoramento de EPIs</span>
-                </a>
-                <a href="../pages/monitoramento.html" class="menu-item">
-                    <img src="../icons/camera-cftv.png" alt="" aria-hidden="true"> 
-                    <span>Monitoramento</span>
-                </a>
-                <a href="../pages/treinamentos.html" class="menu-item">
-                    <img src="../img/colete.png" alt="" aria-hidden="true"> 
-                    <span>Treinamentos</span>
-                </a>
-                <a href="../pages/relatorio.html" class="menu-item">
-                    <img src="../img/relatorio.png" alt="" aria-hidden="true"> 
-                    <span>Relatórios</span>
-                </a>
+            <nav class="sidebar-menu">
+                <a href="../pages/inicial.html"><img src="../img/dashboard.png" alt=""> Painel</a>
+                <a href="../pages/controle-acesso.html"><img src="../img/capacete.png" alt=""> Controle de Acesso</a>
+                <a href="../pages/use_epis.html" class="active"><img src="../img/luvas.png" alt=""> Monitoramento de EPIs</a>
+                <!-- <a href="#"><img src="../icons/camera-cftv.png" alt=""> Monitoramento</a> -->
+                <a href="../pages/"><img src="../img/colete.png" alt=""> Treinamentos</a>
+                <a href="../pages/relatorio.html"><img src="../img/relatorio.png" alt=""> Relatórios</a>
             </nav>
         </aside>
 
@@ -65,7 +50,7 @@
                 <nav class="breadcrumb" aria-label="Navegação estrutural">
                     <ol>
                         <li><a href="../pages/inicial.html">Painel</a></li>
-                        <li><span aria-current="page">Monitoramento de EPIs</span></li>
+                        <li aria-current="page">Monitoramento de EPIs</li>
                     </ol>
                 </nav>
             </header>
@@ -146,7 +131,7 @@
                     <h3 class="chart-title">Conformidade Média por Turno (Últimas 24h)</h3>
                     <div id="compliance-chart" style="height: 300px;">
                         <img src="https://via.placeholder.com/600x300/f8f8f8/333333?text=Gr%C3%A1fico+de+Conformidade+por+Turno" alt="Gráfico de Conformidade por Turno" style="width:100%; height:100%; object-fit:contain; border-radius:8px;">
-                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -284,7 +269,7 @@
                         <div class="live-feed-placeholder">
                             <img src="../assets/img/camera_segurança.jpg" alt="Visualização em tempo real">
                             <div class="non-compliance-overlay">
-                                🚨 Alerta Ativo: Carlos Oliveira (Sem Capacete)
+                                🚨 Alerta Ativo: Carlos Oliveira (Sem Luvas)
                             </div>
                         </div>
                     </div>

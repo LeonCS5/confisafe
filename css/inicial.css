@@ -101,6 +101,12 @@ body {
   background: var(--dark-blue);
 }
 
+/* ===== LAYOUT GERAL ===== */
+.layout {
+  display: flex;
+  flex: 1;
+  min-height: calc(100vh - 130px);
+}
 
 /* =========================================================
    MENU LATERAL
@@ -184,14 +190,27 @@ body {
   font-weight: 600;
 }
 
+/* Efeitos hover */
+.sidebar-menu a:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateX(5px);
+}
 
 /* =========================================================
    CONTEÚDO PRINCIPAL
    ========================================================= */
 .main-content {
-  margin-left: 240px;
+  flex: 1;
   padding: 40px;
+  margin-left: 240px;
+  margin-top: 70px;
+  animation: fadeIn 0.5s ease;
   transition: margin-left 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .welcome h2 {
@@ -241,9 +260,24 @@ body {
   color: var(--dark-blue);
 }
 
+.stat-info p {
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+
 /* =========================================================
    CARDS DE EPIs
    ========================================================= */
+.dashboard {
+  margin-bottom: 40px;
+}
+
+.section-title {
+  margin: 40px 0 20px;
+  color: var(--dark-blue);
+  font-size: 1.3rem;
+}
+
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -270,6 +304,19 @@ body {
   margin-bottom: 10px;
 }
 
+.card h3 {
+  color: var(--dark-blue);
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.card p {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
 .status-badge {
   display: inline-block;
   padding: 6px 12px;
@@ -291,10 +338,8 @@ body {
 /* =========================================================
    FERRAMENTAS E RELATÓRIOS
    ========================================================= */
-.section-title {
-  margin: 40px 0 20px;
-  color: var(--dark-blue);
-  font-size: 1.3rem;
+.tools-section {
+  margin-bottom: 40px;
 }
 
 .card-action .action-btn {
@@ -306,15 +351,22 @@ body {
   border-radius: 6px;
   text-decoration: none;
   transition: var(--transition);
+  font-weight: 500;
+  font-size: 0.9rem;
 }
 
 .card-action .action-btn:hover {
   background: var(--dark-blue);
+  transform: translateY(-2px);
 }
 
 /* =========================================================
    ALERTAS RECENTES
    ========================================================= */
+.recent-alerts {
+  margin-bottom: 40px;
+}
+
 .alerts-container {
   display: flex;
   flex-direction: column;
@@ -341,19 +393,27 @@ body {
   font-size: 1.6rem;
 }
 
+.alert-content {
+  flex: 1;
+  margin: 0 20px;
+}
+
 .alert-content h4 {
   color: var(--dark-blue);
   font-size: 1rem;
+  margin-bottom: 5px;
 }
 
 .alert-content p {
   color: var(--text-lighter);
   font-size: 0.9rem;
+  margin: 0;
 }
 
 .alert-time {
   font-size: 0.85rem;
   color: var(--text-light);
+  white-space: nowrap;
 }
 
 .alert-item.high {
@@ -371,12 +431,170 @@ body {
 /* =========================================================
    FOOTER
    ========================================================= */
-footer {
+.main-footer {
   background: var(--white);
   text-align: center;
-  padding: 15px;
-  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
   margin-top: auto;
   color: var(--text-lighter);
   font-size: 0.9rem;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 220px;
+  }
+  
+  .main-content {
+    margin-left: 220px;
+    padding: 30px;
+  }
+  
+  .quick-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 15px 20px;
+  }
+  
+  .menu {
+    gap: 15px;
+  }
+  
+  .menu a {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+  
+  .sidebar {
+    width: 200px;
+  }
+  
+  .main-content {
+    margin-left: 200px;
+    padding: 25px 20px;
+  }
+  
+  .quick-stats {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  .alert-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+  
+  .alert-content {
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .sidebar {
+    display: none;
+  }
+  
+  .main-content {
+    margin-left: 0;
+    padding: 20px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 12px 15px;
+  }
+  
+  .logo {
+    font-size: 1.4rem;
+  }
+  
+  .menu {
+    gap: 10px;
+  }
+  
+  .menu a {
+    font-size: 0.85rem;
+    padding: 5px 8px;
+  }
+  
+  .login-btn {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+  
+  .main-content {
+    padding: 15px 10px;
+  }
+  
+  .welcome h2 {
+    font-size: 1.4rem;
+  }
+  
+  .welcome p {
+    font-size: 1rem;
+  }
+  
+  .user-profile img {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .user-profile h3 {
+    font-size: 0.9rem;
+  }
+  
+  .user-profile p {
+    font-size: 0.8rem;
+  }
+  
+  .sidebar-menu a {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+  
+  .stat-card {
+    padding: 15px;
+    gap: 12px;
+  }
+  
+  .stat-icon {
+    font-size: 1.5rem;
+  }
+  
+  .stat-info h3 {
+    font-size: 1.3rem;
+  }
+  
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .card {
+    padding: 20px;
+  }
+  
+  .main-footer {
+    padding: 15px 0;
+    font-size: 0.8rem;
+  }
 }

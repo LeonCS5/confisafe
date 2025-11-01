@@ -9,15 +9,15 @@
 </head>
 <body>
 
-  <!-- ===== HEADER ORIGINAL ===== -->
+  <!-- ===== HEADER ===== -->
   <header class="navbar">
     <div class="logo">
       <span class="conf">Confi</span><span class="safe">Safe</span>
     </div>
     <nav class="menu">
-      <a href="../pages/inicial.html">Início</a>
+      <a href="../pages/inicial.html" class="active">Início</a>
       <a href="#">Configurações</a>
-      <a href="#" class="login-btn" id="logoutBtn">Sair</a>
+      <a href="../pages/login.html" class="login-btn" id="logoutBtn">Sair</a>
     </nav>
   </header>
 
@@ -33,21 +33,28 @@
       </div>
 
       <nav class="sidebar-menu">
-        <a href="../pages/inicial.html"><img src="" alt=""> Painel</a>
-        <a href="#"><img src="../img/capacete.png" alt=""> Controle de Acesso</a>
-        <a href="#"><img src="../img/luvas.png" alt=""> Monitoramento de EPIss</a>
-        <a href="#"><img src="../icons/camera-cftv.png" alt=""> Monitoramento</a>
-        <a href="#"><img src="../img/colete.png" alt=""> Treinamentos</a>
+        <a href="../pages/inicial.html"><img src="../img/dashboard.png" alt=""> Painel</a>
+        <a href="../pages/controle-acesso.html"><img src="../img/capacete.png" alt=""> Controle de Acesso</a>
+        <a href="../pages/use_epis.html"><img src="../img/luvas.png" alt=""> Monitoramento de EPIs</a>
+        <!-- <a href="#"><img src="../icons/camera-cftv.png" alt=""> Monitoramento</a> -->
+        <a href="../pages/"><img src="../img/colete.png" alt=""> Treinamentos</a>
         <a href="../pages/relatorio.html" class="active"><img src="../img/relatorio.png" alt=""> Relatórios</a>
       </nav>
     </aside>
 
     <!-- ===== CONTEÚDO PRINCIPAL ===== -->
     <main class="main-content">
-      <section class="welcome">
-        <h2>Relatórios de Segurança</h2>
-        <p>Acompanhe métricas, conformidade e atividades recentes do sistema.</p>
-      </section>
+      <header class="page-header">
+        <h1>Relatórios de Segurança</h1>
+        <p class="page-description">Acompanhe métricas, conformidade e atividades recentes do sistema</p>
+        
+        <nav class="breadcrumb" aria-label="Navegação estrutural">
+          <ol>
+            <li><a href="../pages/inicial.html">Painel</a></li>
+            <li aria-current="page">Relatórios</li>
+          </ol>
+        </nav>
+      </header>
 
       <!-- ===== CARDS DE RELATÓRIOS ===== -->
       <section class="report-cards">
@@ -121,8 +128,10 @@
   </div>
 
   <!-- ===== FOOTER ===== -->
-  <footer>
-    <p>&copy; 2025 ConfiSafe - Todos os direitos reservados.</p>
+  <footer class="main-footer">
+    <div class="footer-content">
+      <p>&copy; 2025 ConfiSafe - Todos os direitos reservados.</p>
+    </div>
   </footer>
 
   <!-- ===== POPUP MODAL ===== -->
@@ -139,8 +148,6 @@
     </div>
   </div>
 
-  <!-- <script src="../js/relatorio.js"></script> -->
-  <!-- Script principal -->
   <script src="../js/relatorio.js"></script>
 </body>
 </html>
