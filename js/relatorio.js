@@ -1,288 +1,355 @@
-/* ============================================================
-   CONFISAFE - DASHBOARD COMPLETA
-   Autor: Michael Coutinho
-   Organização e refinamento: GPT-5
-   ============================================================ */
+/**
+ * CONFISAFE - Relatórios
+ * Versão Empresarial
+ */
 
-/* ============================================================
-   DADOS DOS RELATÓRIOS
-   ============================================================ */
-const reportData = {
-  epi: {
-    title: "Conformidade com EPI",
-    description: "Relatório detalhado sobre o uso de Equipamentos de Proteção Individual",
-    metrics: {
-      "Conformidade Geral": "92%",
-      "Funcionários Regulares": "46",
-      "Funcionários Irregulares": "4",
-      "EPI Mais Utilizado": "Capacete de Segurança",
-      "EPI Menos Utilizado": "Protetor Auditivo",
+(function() {
+  'use strict';
+
+  // ===== ELEMENTOS DO DOM =====
+  const menuToggle = document.getElementById('menuToggle');
+  const sidebar = document.getElementById('sidebar');
+  const logoutBtn = document.getElementById('logoutBtn');
+  const reportModal = document.getElementById('reportModal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalBody = document.getElementById('modalBody');
+  const modalNotes = document.getElementById('modalNotes');
+
+  // ===== DADOS DOS RELATÓRIOS =====
+  const reportData = {
+    epi: {
+      title: 'Conformidade com EPI',
+      metrics: {
+        'Taxa de Conformidade': '92%',
+        'Funcionários em Conformidade': '46/50',
+        'EPI Mais Utilizado': 'Capacete de Segurança',
+        'EPI Menos Utilizado': 'Protetor Auditivo',
+        'Última Auditoria': '20/10/2024'
+      }
     },
-    placeholder:
-      "Digite observações sobre conformidade de EPIs, equipamentos com problemas, sugestões de melhorias...",
-  },
-
-  excecoes: {
-    title: "Relatório de Exceções",
-    description: "Casos de não conformidade e equipamentos com problemas",
-    metrics: {
-      "Total de Exceções": "5",
-      "Exceções Críticas": "2",
-      "Exceções Resolvidas": "3",
-      "Equipamentos com Falhas": "Capacete, Luvas",
-      "Tempo Médio de Resolução": "2 dias",
+    excecoes: {
+      title: 'Relatório de Exceções',
+      metrics: {
+        'Total de Exceções': '5',
+        'Exceções Críticas': '2',
+        'Exceções Resolvidas': '3',
+        'Equipamentos com Falhas': 'Capacete, Luvas',
+        'Tempo Médio de Resolução': '2 dias'
+      }
     },
-    placeholder:
-      "Registre detalhes das exceções, ações tomadas, equipamentos problemáticos e medidas corretivas...",
-  },
-
-  atividade: {
-    title: "Atividade do Usuário",
-    description: "Monitoramento de acesso e atividades dos funcionários",
-    metrics: {
-      "Usuários Ativos Hoje": "18",
-      "Acessos no Mês": "245",
-      "Horário de Pico": "14:00 - 16:00",
-      "Usuários com Acesso Expirado": "2",
-      "Tentativas de Acesso Bloqueadas": "1",
+    atividade: {
+      title: 'Atividade do Usuário',
+      metrics: {
+        'Usuários Ativos Hoje': '18',
+        'Total de Acessos no Mês': '245',
+        'Horário de Pico': '14:00 - 16:00',
+        'Usuários com Acesso Expirado': '2',
+        'Tentativas Bloqueadas': '1'
+      }
     },
-    placeholder:
-      "Anote observações sobre padrões de acesso, usuários com problemas, horários críticos...",
-  },
+    incidentes: {
+      title: 'Relatório de Incidentes',
+      metrics: {
+        'Incidentes Registrados': '3',
+        'Incidentes Graves': '1',
+        'Incidentes Resolvidos': '2',
+        'Tempo Médio de Resposta': '45 min',
+        'Área com Mais Incidentes': 'Setor de Produção'
+      }
+    }
+  };
 
-  incidentes: {
-    title: "Relatório de Incidentes",
-    description: "Registro e acompanhamento de incidentes de segurança",
-    metrics: {
-      "Incidentes Registrados": "3",
-      "Incidentes Graves": "1",
-      "Incidentes Resolvidos": "2",
-      "Tempo Médio de Resposta": "45 min",
-      "Área com Mais Incidentes": "Setor de Produção",
-    },
-    placeholder:
-      "Descreva detalhes dos incidentes, causas identificadas, ações emergenciais e prevenções futuras...",
-  },
-};
+  // ===== MENU MOBILE =====
+  if (menuToggle && sidebar) {
+    menuToggle.addEventListener('click', function() {
+      sidebar.classList.toggle('open');
+    });
 
-/* ============================================================
-   ESTADO DAS ANOTAÇÕES
-   ============================================================ */
-let savedNotes = {
-  epi: "",
-  excecoes: "",
-  atividade: "",
-  incidentes: "",
-};
-
-/* ============================================================
-   INICIALIZAÇÃO GERAL
-   ============================================================ */
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("✅ Painel ConfiSafe carregado.");
-
-  initializeModalSystem();
-  initializeChart();
-  loadSavedNotes();
-  initializeDashboardUI();
-});
-
-/* ============================================================
-   SISTEMA DE MODAL
-   ============================================================ */
-function initializeModalSystem() {
-  const modal = document.getElementById("popupModal");
-  const closeBtn = document.getElementById("closeModal");
-  const saveBtn = document.getElementById("saveNote");
-
-  document.querySelectorAll(".report-card").forEach((card) => {
-    card.addEventListener("click", () => openModal(card.dataset.type));
-
-    card.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        openModal(card.dataset.type);
+    document.addEventListener('click', function(e) {
+      if (window.innerWidth <= 768) {
+        if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
+          sidebar.classList.remove('open');
+        }
       }
     });
-  });
-
-  closeBtn.addEventListener("click", closeModal);
-
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) closeModal();
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modal.style.display === "flex") closeModal();
-  });
-
-  saveBtn.addEventListener("click", saveNote);
-}
-
-/* ============================================================
-   FUNÇÕES DE MODAL
-   ============================================================ */
-function openModal(reportType) {
-  const modal = document.getElementById("popupModal");
-  const modalTitle = document.getElementById("modalTitle");
-  const modalDescription = document.getElementById("modalDescription");
-  const modalMetrics = document.getElementById("modalMetrics");
-  const modalTextarea = document.getElementById("modalTextarea");
-
-  const data = reportData[reportType];
-  if (!data) return;
-
-  document.querySelectorAll(".sidebar-menu a").forEach((item) => item.blur());
-
-  modalTitle.textContent = data.title;
-  modalDescription.textContent = data.description;
-  modalMetrics.innerHTML = "";
-
-  for (const [key, value] of Object.entries(data.metrics)) {
-    const metricItem = document.createElement("div");
-    metricItem.className = "metric-item";
-    metricItem.innerHTML = `
-      <span class="metric-label">${key}</span>
-      <span class="metric-value">${value}</span>
-    `;
-    modalMetrics.appendChild(metricItem);
   }
 
-  modalTextarea.placeholder = data.placeholder;
-  modalTextarea.value = savedNotes[reportType] || "";
+  // ===== LOGOUT =====
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      if (confirm('Deseja realmente sair do sistema?')) {
+        sessionStorage.clear();
+        localStorage.clear();
+        window.location.href = '../pages/login.html';
+      }
+    });
+  }
 
-  modal.style.display = "flex";
-  document.body.style.overflow = "hidden";
-  modal.setAttribute("data-current-report", reportType);
+  // ===== GRÁFICOS =====
+  function initCharts() {
+    // Gráfico de Conformidade Semanal
+    const weeklyCtx = document.getElementById('weeklyChart');
+    if (weeklyCtx) {
+      new Chart(weeklyCtx, {
+        type: 'line',
+        data: {
+          labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+          datasets: [{
+            label: 'Conformidade (%)',
+            data: [88, 90, 92, 91, 94, 93, 92],
+            borderColor: '#166cc7',
+            backgroundColor: 'rgba(22, 108, 199, 0.1)',
+            tension: 0.4,
+            fill: true,
+            pointRadius: 4,
+            pointHoverRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          plugins: {
+            legend: {
+              display: false
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: false,
+              min: 80,
+              max: 100,
+              ticks: {
+                callback: function(value) {
+                  return value + '%';
+                }
+              }
+            }
+          }
+        }
+      });
+    }
 
-  setTimeout(() => modalTextarea.focus(), 100);
+    // Gráfico de Distribuição por Área
+    const areaCtx = document.getElementById('areaChart');
+    if (areaCtx) {
+      new Chart(areaCtx, {
+        type: 'bar',
+        data: {
+          labels: ['Produção', 'Laboratório', 'Manutenção', 'Almoxarifado'],
+          datasets: [
+            {
+              label: 'Conforme',
+              data: [45, 32, 28, 38],
+              backgroundColor: '#28a745'
+            },
+            {
+              label: 'Não Conforme',
+              data: [5, 3, 7, 2],
+              backgroundColor: '#ffc107'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: true,
+          plugins: {
+            legend: {
+              display: false
+            }
+          },
+          scales: {
+            x: {
+              stacked: true
+            },
+            y: {
+              stacked: true,
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    }
+  }
+
+  // ===== INICIALIZAÇÃO =====
+  document.addEventListener('DOMContentLoaded', function() {
+    initCharts();
+    loadSavedNotes();
+    console.log('✅ Relatórios carregado');
+  });
+
+  // ===== SALVAR NOTAS =====
+  function loadSavedNotes() {
+    const saved = localStorage.getItem('confisafe_notes');
+    if (saved) {
+      try {
+        window.savedNotes = JSON.parse(saved);
+      } catch (e) {
+        window.savedNotes = {};
+      }
+    } else {
+      window.savedNotes = {};
+    }
+  }
+
+})();
+
+// ===== FUNÇÕES GLOBAIS =====
+
+function openModal(reportType) {
+  const modal = document.getElementById('reportModal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalBody = document.getElementById('modalBody');
+  const modalNotes = document.getElementById('modalNotes');
+  
+  const reportData = {
+    epi: {
+      title: 'Conformidade com EPI',
+      metrics: {
+        'Taxa de Conformidade': '92%',
+        'Funcionários em Conformidade': '46/50',
+        'EPI Mais Utilizado': 'Capacete de Segurança',
+        'EPI Menos Utilizado': 'Protetor Auditivo',
+        'Última Auditoria': '20/10/2024'
+      }
+    },
+    excecoes: {
+      title: 'Relatório de Exceções',
+      metrics: {
+        'Total de Exceções': '5',
+        'Exceções Críticas': '2',
+        'Exceções Resolvidas': '3',
+        'Equipamentos com Falhas': 'Capacete, Luvas',
+        'Tempo Médio de Resolução': '2 dias'
+      }
+    },
+    atividade: {
+      title: 'Atividade do Usuário',
+      metrics: {
+        'Usuários Ativos Hoje': '18',
+        'Total de Acessos no Mês': '245',
+        'Horário de Pico': '14:00 - 16:00',
+        'Usuários com Acesso Expirado': '2',
+        'Tentativas Bloqueadas': '1'
+      }
+    },
+    incidentes: {
+      title: 'Relatório de Incidentes',
+      metrics: {
+        'Incidentes Registrados': '3',
+        'Incidentes Graves': '1',
+        'Incidentes Resolvidos': '2',
+        'Tempo Médio de Resposta': '45 min',
+        'Área com Mais Incidentes': 'Setor de Produção'
+      }
+    }
+  };
+  
+  const data = reportData[reportType];
+  
+  if (data) {
+    modalTitle.textContent = data.title;
+    
+    // Renderizar métricas
+    let metricsHTML = '<div style="display: grid; gap: 1rem; margin-bottom: 1.5rem;">';
+    for (const [key, value] of Object.entries(data.metrics)) {
+      metricsHTML += `
+        <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: #f8f9fa; border-radius: 6px;">
+          <strong style="color: #333;">${key}:</strong>
+          <span style="color: #166cc7; font-weight: 600;">${value}</span>
+        </div>
+      `;
+    }
+    metricsHTML += '</div>';
+    
+    modalBody.innerHTML = metricsHTML;
+    
+    // Carregar nota salva
+    modalNotes.value = window.savedNotes?.[reportType] || '';
+    modal.setAttribute('data-report-type', reportType);
+    
+    modal.classList.add('show');
+  }
 }
 
 function closeModal() {
-  const modal = document.getElementById("popupModal");
-  modal.style.display = "none";
-  document.body.style.overflow = "auto";
-  modal.removeAttribute("data-current-report");
+  const modal = document.getElementById('reportModal');
+  modal.classList.remove('show');
 }
 
-/* ============================================================
-   ANOTAÇÕES - SALVAR E CARREGAR
-   ============================================================ */
-function saveNote() {
-  const modal = document.getElementById("popupModal");
-  const reportType = modal.getAttribute("data-current-report");
-  const textarea = document.getElementById("modalTextarea");
-
-  if (!reportType || !textarea) return;
-
-  savedNotes[reportType] = textarea.value.trim();
-  localStorage.setItem("confisafe_notes", JSON.stringify(savedNotes));
-
-  showNotification("Anotação salva com sucesso!", "success");
-  setTimeout(closeModal, 800);
-}
-
-function loadSavedNotes() {
-  const saved = localStorage.getItem("confisafe_notes");
-  if (!saved) return;
-
-  try {
-    savedNotes = JSON.parse(saved);
-  } catch (e) {
-    console.error("Erro ao carregar anotações:", e);
+function saveNotes() {
+  const modal = document.getElementById('reportModal');
+  const reportType = modal.getAttribute('data-report-type');
+  const notes = document.getElementById('modalNotes').value.trim();
+  
+  if (!window.savedNotes) {
+    window.savedNotes = {};
   }
+  
+  window.savedNotes[reportType] = notes;
+  localStorage.setItem('confisafe_notes', JSON.stringify(window.savedNotes));
+  
+  showNotification('Observações salvas com sucesso!', 'success');
+  
+  setTimeout(() => {
+    closeModal();
+  }, 1000);
 }
 
-/* ============================================================
-   SISTEMA DE NOTIFICAÇÃO
-   ============================================================ */
-function showNotification(message, type = "success") {
-  const existing = document.querySelector(".notification");
-  if (existing) existing.remove();
-
-  const notification = document.createElement("div");
-  notification.className = `notification ${type === "error" ? "notification-error" : ""}`;
-  notification.textContent = message;
-  notification.setAttribute("role", "alert");
-  notification.setAttribute("aria-live", "polite");
-
-  document.body.appendChild(notification);
-
+function exportReport() {
+  showNotification('Gerando relatório em PDF...', 'info');
+  
   setTimeout(() => {
-    notification.style.animation = "slideOutRight 0.3s ease";
+    showNotification('Relatório exportado com sucesso!', 'success');
+    console.log('Em produção, isso geraria um PDF real');
+  }, 2000);
+}
+
+function showNotification(message, type = 'info') {
+  const notification = document.createElement('div');
+  notification.className = `notification notification-${type}`;
+  notification.style.cssText = `
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    background: ${type === 'success' ? '#28a745' : type === 'warning' ? '#ffc107' : '#166cc7'};
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 9999;
+    animation: slideIn 0.3s ease;
+  `;
+  notification.textContent = message;
+  
+  document.body.appendChild(notification);
+  
+  setTimeout(() => {
+    notification.style.animation = 'slideOut 0.3s ease';
     setTimeout(() => notification.remove(), 300);
   }, 3000);
 }
 
-/* ============================================================
-   GRÁFICO DE RELATÓRIOS
-   ============================================================ */
-function initializeChart() {
-  const ctx = document.getElementById("relatorioGrafico");
-  if (!ctx) return;
-
-  try {
-    new Chart(ctx.getContext("2d"), {
-      type: "line",
-      data: {
-        labels: ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"],
-        datasets: [
-          {
-            label: "Acessos ao Sistema",
-            data: [65, 59, 80, 81, 56, 55, 40],
-            borderColor: "#166cc7",
-            backgroundColor: "rgba(22, 108, 199, 0.1)",
-            borderWidth: 2,
-            tension: 0.4,
-            fill: true,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { position: "top" },
-          tooltip: { mode: "index", intersect: false },
-        },
-        scales: {
-          y: { beginAtZero: true, grid: { color: "rgba(0,0,0,0.1)" } },
-          x: { grid: { display: false } },
-        },
-      },
-    });
-  } catch (error) {
-    console.error("Erro ao inicializar gráfico:", error);
+// Fechar modal ao clicar fora
+window.addEventListener('click', function(e) {
+  const modal = document.getElementById('reportModal');
+  if (e.target === modal) {
+    closeModal();
   }
-}
+});
 
-/* ============================================================
-   INTERFACE DO DASHBOARD
-   ============================================================ */
-function initializeDashboardUI() {
-  const menuLinks = document.querySelectorAll(".sidebar-menu a");
-  const logoutBtn = document.getElementById("logoutBtn");
-
-  // === Gerenciar menu ativo ===
-  menuLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      menuLinks.forEach((l) => l.classList.remove("active"));
-      link.classList.add("active");
-    });
-  });
-
-  // === Botão de sair ===
-  if (logoutBtn) {
-    logoutBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      alert("Você saiu do sistema."); // Substituir por lógica real
-      window.location.href = "../pages/login.html";
-    });
+// Animações CSS
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
   }
-}
-
-/* ============================================================
-   EXPORTAÇÃO GLOBAL
-   ============================================================ */
-window.openModal = openModal;
-window.closeModal = closeModal;
-window.saveNote = saveNote;
+  @keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+  }
+`;
+document.head.appendChild(style);
