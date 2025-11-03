@@ -69,15 +69,7 @@
           <span>Monitoramento EPIs</span>
         </a>
 
-        <!-- <a href="../pages/monitoramento.html" class="nav-link">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-            <circle cx="12" cy="13" r="4"></circle>
-          </svg>
-          <span>Câmeras</span>
-        </a> -->
-
-        <a href="../pages/treinamentos.html" class="nav-link">
+        <a href="../pages/treinamento.html" class="nav-link">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
             <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
@@ -177,6 +169,7 @@
           <button class="tab-btn active" data-tab="employees">Por Funcionário</button>
           <button class="tab-btn" data-tab="areas">Por Área</button>
           <button class="tab-btn" data-tab="epis">Por Equipamento</button>
+          <button class="tab-btn" data-tab="cameras">Câmeras</button>
         </div>
 
         <!-- Tab: Por Funcionário -->
@@ -453,6 +446,147 @@
             </div>
           </div>
         </div>
+
+        <!-- Tab: Câmeras (NOVO) -->
+        <div class="tab-content" id="cameras-tab">
+          
+          <!-- Live Badge -->
+          <div class="camera-header">
+            <span class="live-badge">
+              <span class="live-dot"></span>
+              AO VIVO
+            </span>
+            <span class="camera-info-text">6 câmeras ativas monitorando os setores</span>
+          </div>
+
+          <!-- Cameras Grid -->
+          <div class="cameras-grid">
+            
+            <!-- Camera 1 -->
+            <div class="camera-card">
+              <div class="camera-feed">
+                <span class="camera-status">● Online</span>
+                <span class="camera-icon">📹</span>
+              </div>
+              <div class="camera-info">
+                <div class="camera-name">Câmera 01 - Entrada Principal</div>
+                <div class="camera-stats">
+                  <span>Pessoas: <strong>12</strong></span>
+                  <span>Conformes: <strong class="text-success">11</strong></span>
+                  <span>Alertas: <strong class="text-warning">1</strong></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Camera 2 -->
+            <div class="camera-card">
+              <div class="camera-feed">
+                <span class="camera-status">● Online</span>
+                <span class="camera-icon">📹</span>
+              </div>
+              <div class="camera-info">
+                <div class="camera-name">Câmera 02 - Setor de Produção</div>
+                <div class="camera-stats">
+                  <span>Pessoas: <strong>18</strong></span>
+                  <span>Conformes: <strong class="text-success">16</strong></span>
+                  <span>Alertas: <strong class="text-danger">2</strong></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Camera 3 -->
+            <div class="camera-card">
+              <div class="camera-feed">
+                <span class="camera-status">● Online</span>
+                <span class="camera-icon">📹</span>
+              </div>
+              <div class="camera-info">
+                <div class="camera-name">Câmera 03 - Manutenção</div>
+                <div class="camera-stats">
+                  <span>Pessoas: <strong>8</strong></span>
+                  <span>Conformes: <strong class="text-success">7</strong></span>
+                  <span>Alertas: <strong class="text-warning">1</strong></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Camera 4 -->
+            <div class="camera-card">
+              <div class="camera-feed">
+                <span class="camera-status">● Online</span>
+                <span class="camera-icon">📹</span>
+              </div>
+              <div class="camera-info">
+                <div class="camera-name">Câmera 04 - Laboratório</div>
+                <div class="camera-stats">
+                  <span>Pessoas: <strong>5</strong></span>
+                  <span>Conformes: <strong class="text-success">5</strong></span>
+                  <span>Alertas: <strong class="text-success">0</strong></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Camera 5 -->
+            <div class="camera-card">
+              <div class="camera-feed">
+                <span class="camera-status">● Online</span>
+                <span class="camera-icon">📹</span>
+              </div>
+              <div class="camera-info">
+                <div class="camera-name">Câmera 05 - Almoxarifado</div>
+                <div class="camera-stats">
+                  <span>Pessoas: <strong>3</strong></span>
+                  <span>Conformes: <strong class="text-success">3</strong></span>
+                  <span>Alertas: <strong class="text-success">0</strong></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Camera 6 -->
+            <div class="camera-card">
+              <div class="camera-feed">
+                <span class="camera-status">● Online</span>
+                <span class="camera-icon">📹</span>
+              </div>
+              <div class="camera-info">
+                <div class="camera-name">Câmera 06 - Estacionamento</div>
+                <div class="camera-stats">
+                  <span>Pessoas: <strong>6</strong></span>
+                  <span>Conformes: <strong class="text-success">6</strong></span>
+                  <span>Alertas: <strong class="text-success">0</strong></span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Camera Alerts -->
+          <div class="camera-alerts">
+            <h3>Detecções Recentes</h3>
+            
+            <div class="camera-alerts-list">
+              <div class="camera-alert-item">
+                <span class="camera-alert-icon">⚠️</span>
+                <div class="camera-alert-content">
+                  <div class="camera-alert-title">EPI Ausente - Capacete</div>
+                  <div class="camera-alert-desc">Câmera 02 - Setor de Produção | Carlos Silva</div>
+                </div>
+                <div class="camera-alert-time">Há 5 min</div>
+              </div>
+
+              <div class="camera-alert-item">
+                <span class="camera-alert-icon">⚠️</span>
+                <div class="camera-alert-content">
+                  <div class="camera-alert-title">Uso Incorreto - Máscara</div>
+                  <div class="camera-alert-desc">Câmera 03 - Manutenção | João Oliveira</div>
+                </div>
+                <div class="camera-alert-time">Há 12 min</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
       </div>
 
       <!-- Recent Alerts -->

@@ -1,6 +1,6 @@
 /**
  * CONFISAFE - Monitoramento de EPIs
- * Versão Empresarial
+ * Versão Empresarial com Câmeras
  */
 
 (function() {
@@ -58,11 +58,35 @@
       if (targetContent) {
         targetContent.classList.add('active');
       }
+
+      // Se for a aba de câmeras, simular atualização
+      if (targetTab === 'cameras') {
+        console.log('📹 Aba de câmeras ativada');
+        simulateCameraUpdate();
+      }
     });
   });
 
+  // ===== SIMULAÇÃO DE ATUALIZAÇÃO DE CÂMERAS =====
+  function simulateCameraUpdate() {
+    // Simula atualização periódica das estatísticas das câmeras
+    const cameraStats = document.querySelectorAll('.camera-stats strong');
+    
+    setInterval(() => {
+      cameraStats.forEach(stat => {
+        // Pequena animação visual
+        if (Math.random() > 0.9) {
+          stat.style.transform = 'scale(1.1)';
+          setTimeout(() => {
+            stat.style.transform = 'scale(1)';
+          }, 200);
+        }
+      });
+    }, 5000);
+  }
+
   // ===== INICIALIZAÇÃO =====
-  console.log('✅ Monitoramento de EPIs carregado');
+  console.log('✅ Monitoramento de EPIs com Câmeras carregado');
 
 })();
 
@@ -72,7 +96,6 @@ function filterByArea(area) {
   console.log('Filtrando por área:', area);
   showNotification(`Filtro aplicado: ${getAreaName(area)}`, 'info');
   
-  // Em produção, aqui filtraria a tabela
   const rows = document.querySelectorAll('.monitoring-table tbody tr');
   
   if (area === 'all') {
@@ -114,7 +137,6 @@ function refreshData() {
 function viewAlerts() {
   showNotification('Abrindo painel de alertas...', 'info');
   
-  // Scroll para a seção de alertas
   const alertsSection = document.querySelector('.alerts-section');
   if (alertsSection) {
     alertsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -153,7 +175,6 @@ function blockAccess(employeeId) {
     showNotification('🚫 Acesso bloqueado! Funcionário notificado.', 'warning');
     console.log('Acesso bloqueado para funcionário ID:', employeeId);
     
-    // Atualizar visualmente a linha
     const row = document.querySelector(`.monitoring-table tbody tr:nth-child(${employeeId})`);
     if (row) {
       row.style.opacity = '0.5';
