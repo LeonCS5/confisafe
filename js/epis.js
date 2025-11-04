@@ -1,6 +1,6 @@
 /**
  * CONFISAFE - Monitoramento de EPIs
- * Versão Empresarial com Câmeras
+
  */
 
 (function() {

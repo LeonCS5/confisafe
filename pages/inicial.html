@@ -41,8 +41,8 @@
       <!-- User Info -->
       <div class="user-info">
         <img src="../assets/img/controle.png" alt="Foto de perfil" class="user-avatar">
-        <h2 class="user-name">Michael Coutinho</h2>
-        <p class="user-role">Técnico de Segurança</p>
+        <h2 class="user-name" id="userName">Carregando...</h2>
+        <p class="user-role" id="userRole">Carregando...</p>
       </div>
 
       <!-- Menu -->
@@ -69,14 +69,6 @@
           <span>Monitoramento EPIs</span>
         </a>
 
-        <!-- <a href="../pages/monitoramento.html" class="nav-link">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-            <circle cx="12" cy="13" r="4"></circle>
-          </svg>
-          <span>Câmeras</span>
-        </a> -->
-
         <a href="../pages/treinamento.html" class="nav-link">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
@@ -101,16 +93,16 @@
       
       <!-- Welcome -->
       <div class="page-header">
-        <h2>Bem-vindo ao Sistema ConfiSafe</h2>
-        <p>Monitore a segurança e conformidade com EPIs em tempo real.</p>
+        <h2 id="welcomeMessage">Bem-vindo ao Sistema ConfiSafe</h2>
+        <p id="pageDescription">Monitore a segurança e conformidade com EPIs em tempo real.</p>
       </div>
 
       <!-- Stats Cards -->
-      <div class="stats-grid">
+      <div class="stats-grid" id="statsGrid">
         <div class="stat-card">
           <div class="stat-icon">👥</div>
           <div class="stat-info">
-            <span class="stat-value">48</span>
+            <span class="stat-value" id="activeEmployees">48</span>
             <span class="stat-label">Funcionários Ativos</span>
           </div>
         </div>
@@ -118,7 +110,7 @@
         <div class="stat-card">
           <div class="stat-icon">✅</div>
           <div class="stat-info">
-            <span class="stat-value">92%</span>
+            <span class="stat-value" id="complianceRate">92%</span>
             <span class="stat-label">Conformidade EPI</span>
           </div>
         </div>
@@ -126,7 +118,7 @@
         <div class="stat-card stat-card--warning">
           <div class="stat-icon">⚠️</div>
           <div class="stat-info">
-            <span class="stat-value">3</span>
+            <span class="stat-value" id="activeAlerts">3</span>
             <span class="stat-label">Alertas Ativos</span>
           </div>
         </div>
@@ -134,7 +126,7 @@
         <div class="stat-card stat-card--success">
           <div class="stat-icon">📊</div>
           <div class="stat-info">
-            <span class="stat-value">100%</span>
+            <span class="stat-value" id="systemStatus">100%</span>
             <span class="stat-label">Sistema Online</span>
           </div>
         </div>
@@ -144,33 +136,33 @@
       <section class="section">
         <h3 class="section-title">Equipamentos de Proteção Individual</h3>
         
-        <div class="cards-grid">
+        <div class="cards-grid" id="epiCardsGrid">
           <div class="card">
             <img src="../img/capacete.png" alt="Capacete" width="50" height="50">
             <h4>Capacete de Segurança</h4>
             <p>Protege contra impactos e quedas de objetos.</p>
-            <span class="badge badge--success">95% Conforme</span>
+            <span class="badge badge--success" data-epi="helmet">95% Conforme</span>
           </div>
 
           <div class="card">
             <img src="../img/luvas.png" alt="Luvas" width="50" height="50">
             <h4>Luvas de Proteção</h4>
             <p>Evita cortes e contato com químicos.</p>
-            <span class="badge badge--warning">88% Conforme</span>
+            <span class="badge badge--warning" data-epi="gloves">88% Conforme</span>
           </div>
 
           <div class="card">
             <img src="../img/mascara.png" alt="Máscara" width="50" height="50">
             <h4>Máscara Respiratória</h4>
             <p>Filtra gases nocivos e partículas.</p>
-            <span class="badge badge--success">96% Conforme</span>
+            <span class="badge badge--success" data-epi="mask">96% Conforme</span>
           </div>
 
           <div class="card">
             <img src="../img/colete.png" alt="Colete" width="50" height="50">
             <h4>Colete Refletivo</h4>
             <p>Aumenta visibilidade em ambientes.</p>
-            <span class="badge badge--success">94% Conforme</span>
+            <span class="badge badge--success" data-epi="vest">94% Conforme</span>
           </div>
         </div>
       </section>
@@ -180,7 +172,7 @@
         <h3 class="section-title">Ações Rápidas</h3>
         
         <div class="actions-grid">
-          <a href="../pages/relatorio.html" class="action-card">
+          <a href="../pages/relatorio.html" class="action-card" data-action="reports">
             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="18" y1="20" x2="18" y2="10"></line>
               <line x1="12" y1="20" x2="12" y2="4"></line>
@@ -190,7 +182,7 @@
             <p>Visualizar estatísticas</p>
           </a>
 
-          <a href="../pages/treinamentos.html" class="action-card">
+          <a href="../pages/treinamento.html" class="action-card" data-action="trainings">
             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
               <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
@@ -205,8 +197,8 @@
       <section class="section">
         <h3 class="section-title">Alertas Recentes</h3>
         
-        <div class="alerts-list">
-          <div class="alert alert--high">
+        <div class="alerts-list" id="alertsList">
+          <div class="alert alert--high" data-alert-id="1">
             <span class="alert-icon">⚠️</span>
             <div class="alert-content">
               <strong>Capacete sem certificação</strong>
@@ -215,7 +207,7 @@
             <time>Há 2 horas</time>
           </div>
 
-          <div class="alert alert--medium">
+          <div class="alert alert--medium" data-alert-id="2">
             <span class="alert-icon">ℹ️</span>
             <div class="alert-content">
               <strong>Treinamento pendente</strong>
@@ -224,7 +216,7 @@
             <time>Há 1 dia</time>
           </div>
 
-          <div class="alert">
+          <div class="alert" data-alert-id="3">
             <span class="alert-icon">📝</span>
             <div class="alert-content">
               <strong>Relatório mensal</strong>
@@ -242,6 +234,12 @@
   <footer class="footer">
     <p>&copy; 2025 ConfiSafe - Todos os direitos reservados.</p>
   </footer>
+
+  <!-- Loading Spinner -->
+  <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+    <div class="spinner"></div>
+    <p>Carregando dados...</p>
+  </div>
 
   <script src="../js/inicial.js"></script>
 </body>
