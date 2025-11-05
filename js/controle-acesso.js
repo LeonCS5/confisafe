@@ -21,7 +21,7 @@
   let employees = [
     {
       id: 1,
-      name: 'João Silva',
+      name: 'Neymar Junior',
       function: 'Operador de Máquinas',
       area: 'Produção',
       level: 2,
@@ -30,7 +30,7 @@
     },
     {
       id: 2,
-      name: 'Maria Santos',
+      name: 'C.Ronaldo',
       function: 'Técnica de Laboratório',
       area: 'Laboratório',
       level: 3,
@@ -39,7 +39,7 @@
     },
     {
       id: 3,
-      name: 'Carlos Oliveira',
+      name: 'Leonel Messi',
       function: 'Auxiliar de Manutenção',
       area: 'Manutenção',
       level: 1,
@@ -48,7 +48,7 @@
     },
     {
       id: 4,
-      name: 'Ana Costa',
+      name: 'Gustavo Lima',
       function: 'Supervisora',
       area: 'Administrativo',
       level: 4,

@@ -207,7 +207,7 @@ function openModal(reportType) {
   const reportData = {
     epi: {
       title: 'Conformidade com EPI',
-      metrics: {
+      metrics: { 
         'Taxa de Conformidade': '92%',
         'Funcionários em Conformidade': '46/50',
         'EPI Mais Utilizado': 'Capacete de Segurança',

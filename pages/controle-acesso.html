@@ -8,6 +8,7 @@
   <title>Controle de Acesso | ConfiSafe</title>
   
   <link rel="stylesheet" href="../css/controle-acesso.css">
+  <link rel="stylesheet" href="../css/header-global.css">
 </head>
 <body>
 
@@ -69,13 +70,14 @@
           <span>Monitoramento EPIs</span>
         </a>
 
-        <!-- <a href="../pages/monitoramento.html" class="nav-link">
+        <a href="../pages/gestao-epis.html" class="nav-link">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-            <circle cx="12" cy="13" r="4"></circle>
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+            <line x1="12" y1="22.08" x2="12" y2="12"></line>
           </svg>
-          <span>Câmeras</span>
-        </a> -->
+          <span>Gestão de EPIs</span>
+        </a>
 
         <a href="../pages/treinamento.html" class="nav-link">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -424,10 +426,6 @@
     </main>
   </div>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <p>&copy; 2025 ConfiSafe - Todos os direitos reservados.</p>
-  </footer>
 
   <!-- Modal Adicionar/Editar Funcionário -->
   <div class="modal" id="employeeModal">
@@ -488,7 +486,7 @@
     </div>
   </div>
 
-  <!-- Modal de Detalhes -->
+  <!-- Modal de Detales -->
   <div class="modal" id="detailsModal">
     <div class="modal-content">
       <div class="modal-header">
@@ -496,10 +494,15 @@
         <button class="modal-close" onclick="closeModal()">&times;</button>
       </div>
       <div class="modal-body" id="modalBody">
-        <!-- Conteúdo carregado via JS -->
+        <!-- essa conteudo e  com  JS -->
       </div>
     </div>
   </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; 2025 ConfiSafe - Todos os direitos reservados.</p>
+  </footer>
 
   <script src="../js/controle-acesso.js"></script>
 </body>

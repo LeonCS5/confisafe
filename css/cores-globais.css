@@ -1,0 +1,23 @@
+/* VARIÁVEIS */
+:root {
+  --primary: #166cc7;
+  --primary-dark: #0a3d7e;
+  --primary-light: #1e90ff;
+  
+  --success: #28a745;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --info: #17a2b8;
+  
+  --text: #333;
+  --text-light: #666;
+  --bg: #f5f7fa;
+  --white: #fff;
+  --border: #e0e0e0;
+  
+  --navbar-height: 64px;
+  --sidebar-width: 250px;
+  
+  --shadow: 0 2px 8px rgba(0,0,0,0.1);
+  --shadow-lg: 0 4px 16px rgba(0,0,0,0.12);
+}
