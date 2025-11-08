@@ -1,26 +1,29 @@
 /**
  * CONFISAFE - Configurações
- * Gerenciamento de preferências e conta do usuário
+ 
  */
 
 (function() {
-  'use strict';
+  'use strict'; // Impede o uso de variáveis não declaradas, ajudando na segurança e boas práticas.
 
-  // ===== ELEMENTOS DO DOM =====
-  const menuToggle = document.getElementById('menuToggle');
-  const sidebar = document.getElementById('sidebar');
-  const logoutBtn = document.getElementById('logoutBtn');
-  const tabButtons = document.querySelectorAll('.tab-btn');
-  const tabContents = document.querySelectorAll('.tab-content');
-  const profileForm = document.getElementById('profileForm');
-  const passwordForm = document.getElementById('passwordForm');
+  // ===== ELEMENTOS DO DOMm paRA BUSCAR DO HTML =====
+  // Aqui FICARAM  obtidos os elementos DO HTMLL usados pelo script.
+  const menuToggle = document.getElementById('menuToggle'); // Botão que abre/fecha o menu lateral.
+  const sidebar = document.getElementById('sidebar'); // Menu lateral.
+  const logoutBtn = document.getElementById('logoutBtn'); // Botão de logout.
+  const tabButtons = document.querySelectorAll('.tab-btn'); // Botões das abas.
+  const tabContents = document.querySelectorAll('.tab-content'); // Conteúdo das abas.
+  const profileForm = document.getElementById('profileForm'); // Formulário de perfil do usuário.
+  const passwordForm = document.getElementById('passwordForm'); // Formulário de alteração de senha.
 
-  // ===== MENU MOBILE =====
+  // ===== MENU PARA CELULAR =====
+  // Abre e fecha o menu lateral no modo mobile.
   if (menuToggle && sidebar) {
     menuToggle.addEventListener('click', function() {
-      sidebar.classList.toggle('open');
+      sidebar.classList.toggle('open'); // Alterna a classe "open".
     });
 
+    // Fecha o menu se o usuário clicar fora dele (em telas pequenas).
     document.addEventListener('click', function(e) {
       if (window.innerWidth <= 768) {
         if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
@@ -31,26 +34,30 @@
   }
 
   // ===== LOGOUT =====
+  // Realiza logout e limpa os dados locais.
   if (logoutBtn) {
     logoutBtn.addEventListener('click', function(e) {
       e.preventDefault();
       
       if (confirm('Deseja realmente sair do sistema?')) {
-        sessionStorage.clear();
-        localStorage.clear();
-        window.location.href = '../pages/login.html';
+        sessionStorage.clear(); // Limpa sessão atual.
+        localStorage.clear(); // Limpa dados salvos localmente.
+        window.location.href = '../pages/login.html'; // Redireciona para login.
       }
     });
   }
 
   // ===== TABS =====
+  // Alterna entre abas (ex: perfil, segurança, notificações, etc.).
   tabButtons.forEach(button => {
     button.addEventListener('click', function() {
       const targetTab = this.dataset.tab;
       
+      // Remove a classe "active" de todos os botões e conteúdos.
       tabButtons.forEach(btn => btn.classList.remove('active'));
       tabContents.forEach(content => content.classList.remove('active'));
       
+      // Ativa a aba clicada.
       this.classList.add('active');
       
       const targetContent = document.getElementById(targetTab + '-tab');
@@ -61,29 +68,32 @@
   });
 
   // ===== FORMULÁRIO DE PERFIL =====
+  // Salva os dados do perfil do usuário.
   if (profileForm) {
     profileForm.addEventListener('submit', function(e) {
       e.preventDefault();
       
+      // Captura os valores dos campos.
       const fullName = document.getElementById('fullName').value.trim();
       const email = document.getElementById('email').value.trim();
       const department = document.getElementById('department').value;
       const phone = document.getElementById('phone').value.trim();
       const ramal = document.getElementById('ramal').value.trim();
 
+      // Verifica se os campos obrigatórios estão preenchidos.
       if (!fullName || !email) {
         showNotification('Preencha todos os campos obrigatórios!', 'warning');
         return;
       }
 
-      // Validação de e-mail
+      // Validação simples de e-mail.
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
         showNotification('Digite um e-mail válido!', 'warning');
         return;
       }
 
-      // Salvar no localStorage (simulação)
+      // Cria um objeto com os dados e salva no localStorage (simulação).
       const userData = {
         fullName,
         email,
@@ -100,6 +110,7 @@
   }
 
   // ===== FORMULÁRIO DE SENHA =====
+  // Valida e simula a troca de senha.
   if (passwordForm) {
     passwordForm.addEventListener('submit', function(e) {
       e.preventDefault();
@@ -108,23 +119,25 @@
       const newPassword = document.getElementById('newPassword').value;
       const confirmPassword = document.getElementById('confirmPassword').value;
 
+      // Verifica campos obrigatórios.
       if (!currentPassword || !newPassword || !confirmPassword) {
         showNotification('Preencha todos os campos!', 'warning');
         return;
       }
 
-      // Validação de senha
+      // Valida comprimento mínimo.
       if (newPassword.length < 8) {
         showNotification('A nova senha deve ter no mínimo 8 caracteres!', 'warning');
         return;
       }
 
+      // Verifica se as senhas coincidem.
       if (newPassword !== confirmPassword) {
         showNotification('As senhas não coincidem!', 'warning');
         return;
       }
 
-      // Validação de complexidade
+      // Verifica se contém letras e números.
       const hasLetter = /[a-zA-Z]/.test(newPassword);
       const hasNumber = /\d/.test(newPassword);
       
@@ -133,7 +146,7 @@
         return;
       }
 
-      // Simulação de alteração
+      // Simula sucesso e redireciona para login.
       showNotification('✅ Senha alterada com sucesso! Faça login novamente.', 'success');
       
       setTimeout(() => {
@@ -144,7 +157,7 @@
 
   // ===== INICIALIZAÇÃO =====
   console.log('✅ Configurações carregadas');
-  loadUserData();
+  loadUserData(); // Carrega dados do usuário ao abrir a página.
 
   // ===== CARREGAR DADOS DO USUÁRIO =====
   function loadUserData() {
@@ -154,6 +167,7 @@
       try {
         const userData = JSON.parse(savedData);
         
+        // Preenche os campos do formulário com os dados salvos.
         if (document.getElementById('fullName')) {
           document.getElementById('fullName').value = userData.fullName || '';
         }
@@ -179,6 +193,7 @@
 
 // ===== FUNÇÕES GLOBAIS =====
 
+// Reseta o formulário de perfil.
 function resetForm() {
   if (confirm('Descartar alterações?')) {
     document.getElementById('profileForm').reset();
@@ -186,27 +201,27 @@ function resetForm() {
   }
 }
 
+// Mostra a prévia da imagem de perfil.
 function previewAvatar(event) {
   const file = event.target.files[0];
-  
   if (!file) return;
 
-  // Validar tamanho (2MB)
+  // Valida tamanho máximo (2MB).
   if (file.size > 2 * 1024 * 1024) {
     showNotification('❌ A imagem deve ter no máximo 2MB!', 'warning');
     event.target.value = '';
     return;
   }
 
-  // Validar tipo
+  // Valida tipo do arquivo (apenas imagens).
   if (!file.type.startsWith('image/')) {
     showNotification('❌ Por favor, selecione uma imagem válida!', 'warning');
     event.target.value = '';
     return;
   }
 
+  // Lê e exibe a imagem selecionada.
   const reader = new FileReader();
-  
   reader.onload = function(e) {
     const preview = document.getElementById('avatarPreview');
     if (preview) {
@@ -214,26 +229,25 @@ function previewAvatar(event) {
       showNotification('✅ Foto de perfil atualizada!', 'success');
     }
   };
-  
   reader.readAsDataURL(file);
 }
 
+// Remove a foto de perfil e restaura a padrão.
 function removeAvatar() {
   if (confirm('Deseja realmente remover sua foto de perfil?')) {
     const preview = document.getElementById('avatarPreview');
     if (preview) {
       preview.src = '../assets/img/controle.png';
     }
-    
     const input = document.getElementById('avatarInput');
     if (input) {
       input.value = '';
     }
-    
     showNotification('Foto de perfil removida.', 'info');
   }
 }
 
+// Salva preferências de notificação.
 function saveNotifications() {
   const notifications = {
     emailAlertas: document.getElementById('emailAlertas').checked,
@@ -248,6 +262,7 @@ function saveNotifications() {
   showNotification('✅ Preferências de notificação salvas!', 'success');
 }
 
+// Simula encerramento de sessão ativa.
 function revokeSession(sessionId) {
   if (confirm('Deseja realmente encerrar esta sessão?')) {
     showNotification('✅ Sessão encerrada com sucesso!', 'success');
@@ -255,6 +270,7 @@ function revokeSession(sessionId) {
   }
 }
 
+// Exibe instruções para ativar autenticação de dois fatores.
 function enable2FA() {
   showNotification('🔐 Abrindo configuração de 2FA...', 'info');
   
@@ -267,6 +283,7 @@ function enable2FA() {
   }, 500);
 }
 
+// Salva preferências do sistema (tema, idioma, fuso horário).
 function saveSystemPreferences() {
   const preferences = {
     theme: document.getElementById('themeSelect').value,
@@ -278,12 +295,13 @@ function saveSystemPreferences() {
   localStorage.setItem('confisafe_system_preferences', JSON.stringify(preferences));
   showNotification('✅ Preferências do sistema salvas!', 'success');
   
-  // Aplicar tema (se for implementado)
+  // Alerta sobre o tema escuro (ainda não implementado).
   if (preferences.theme === 'dark') {
     showNotification('💡 Tema escuro será implementado em breve!', 'info');
   }
 }
 
+// Exporta todos os dados do usuário em um arquivo JSON.
 function exportData() {
   showNotification('📦 Preparando exportação de dados...', 'info');
   
@@ -295,6 +313,7 @@ function exportData() {
       exportDate: new Date().toISOString()
     };
 
+    // Cria e baixa o arquivo JSON com os dados.
     const dataStr = JSON.stringify(userData, null, 2);
     const blob = new Blob([dataStr], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
@@ -311,6 +330,7 @@ function exportData() {
   }, 1500);
 }
 
+// Desativa a conta do usuário (mantendo dados salvos).
 function deactivateAccount() {
   const confirmation = prompt('Digite "DESATIVAR" para confirmar a desativação da conta:');
   
@@ -327,11 +347,12 @@ function deactivateAccount() {
   }
 }
 
+// Exclui permanentemente a conta (apaga tudo).
 function deleteAccount() {
   const confirmation1 = prompt('⚠️ ATENÇÃO: Esta ação é IRREVERSÍVEL!\n\nTodos os seus dados serão permanentemente excluídos.\n\nDigite "EXCLUIR PERMANENTEMENTE" para confirmar:');
   
   if (confirmation1 === 'EXCLUIR PERMANENTEMENTE') {
-    const confirmation2 = confirm('Tem ABSOLUTA CERTEZA?\n\nEsta é sua última chance de cancelar.\n\nTodos os dados serão perdidos para sempre!');
+    const confirmation2 = confirm('Tem ABSOLUTA CERTEZA?\n\nTodos os dados serão perdidos para sempre!');
     
     if (confirmation2) {
       showNotification('❌ Conta excluída permanentemente.', 'danger');
@@ -347,14 +368,16 @@ function deleteAccount() {
   }
 }
 
+// Função para exibir notificações personalizadas na tela.
 function showNotification(message, type = 'info') {
-  // Remover notificações existentes
+  // Remove notificações anteriores.
   const existingNotifications = document.querySelectorAll('.notification');
   existingNotifications.forEach(notification => notification.remove());
 
   const notification = document.createElement('div');
   notification.className = `notification notification-${type}`;
   
+  // Define cores conforme o tipo.
   const colors = {
     success: '#28a745',
     warning: '#ffc107',
@@ -362,6 +385,7 @@ function showNotification(message, type = 'info') {
     danger: '#dc3545'
   };
   
+  // Define estilo visual.
   notification.style.cssText = `
     position: fixed;
     top: 80px;
@@ -380,6 +404,7 @@ function showNotification(message, type = 'info') {
   
   document.body.appendChild(notification);
   
+  // Remove a notificação após 4 segundos.
   setTimeout(() => {
     notification.style.animation = 'slideOut 0.3s ease';
     setTimeout(() => {
@@ -390,7 +415,8 @@ function showNotification(message, type = 'info') {
   }, 4000);
 }
 
-// Animações CSS
+// ===== ANIMAÇÕES CSS =====
+// Cria animações para as notificações.
 const style = document.createElement('style');
 style.textContent = `
   @keyframes slideIn {
