@@ -11,16 +11,16 @@ main.contato-container {
 .contato-content { 
   max-width: 1000px; 
   width: 100%;
-  background: #fff; 
+  background: var(--white); 
   padding: 40px; 
   border-radius: 8px; 
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); 
+  box-shadow: var(--shadow-lg); 
 }
 
 /* Títulos e Introdução */
 .contato-content h1 { 
   text-align: center; 
-  color: #0a3d7e; 
+  color: var(--primary-dark); 
   margin-bottom: 5px; 
   font-size: 2rem;
 }
@@ -28,7 +28,7 @@ main.contato-container {
 .introducao {
   text-align: center; 
   margin-bottom: 30px; 
-  color: #555;
+  color: var(--text-muted);
 }
 
 /* Layout em Grid (Duas Colunas) */
@@ -41,13 +41,13 @@ main.contato-container {
 /* Estilo dos Canais e Formulário */
 .info-contato, .formulario {
   padding: 20px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--border);
   border-radius: 6px;
 }
 
 .info-contato h2, .formulario h2 {
-  color: #1e90ff;
-  border-bottom: 2px solid #e0e0e0;
+  color: var(--primary-light);
+  border-bottom: 2px solid var(--border);
   padding-bottom: 5px;
   margin-bottom: 20px;
   font-size: 1.5rem;
@@ -60,7 +60,7 @@ main.contato-container {
 
 .info-item label {
   font-weight: bold; 
-  color: #333;
+  color: var(--text-dark);
   margin-bottom: 5px;
   display: block;
 }
@@ -70,13 +70,13 @@ main.contato-container {
 }
 
 .info-item a {
-  color: #0a3d7e;
+  color: var(--primary-dark);
   text-decoration: none;
-  transition: color 0.3s;
+  transition: var(--transition);
 }
 
 .info-item a:hover {
-  color: #1e90ff;
+  color: var(--primary-light);
   text-decoration: underline;
 }
 
@@ -85,7 +85,7 @@ label {
   display: block; 
   margin-bottom: 5px; 
   font-weight: bold; 
-  color: #333;
+  color: var(--text-dark);
 }
 
 input[type="text"], 
@@ -95,7 +95,7 @@ textarea {
   width: 100%; 
   padding: 10px; 
   margin-bottom: 20px; 
-  border: 1px solid #ccc; 
+  border: 1px solid var(--border); 
   border-radius: 4px; 
   box-sizing: border-box; 
   font-size: 1rem;
@@ -108,8 +108,8 @@ textarea {
 
 /* Botão de Envio */
 .formulario button { 
-  background-color: #1e90ff; /* Azul Claro */
-  color: white; 
+  background-color: var(--primary-light);
+  color: var(--white); 
   padding: 12px 25px; 
   border: none; 
   border-radius: 6px; 
@@ -121,15 +121,15 @@ textarea {
 }
 
 .formulario button:hover { 
-  background-color: #0a3d7e; /* Azul Escuro no hover */
+  background-color: var(--primary-dark);
 }
 
 /* Media Query para Responsividade */
 @media (max-width: 800px) {
-    .grid-contato {
-        grid-template-columns: 1fr;
-    }
-    .contato-content {
-        padding: 25px;
-    }
+  .grid-contato {
+      grid-template-columns: 1fr;
+  }
+  .contato-content {
+      padding: 25px;
+  }
 }

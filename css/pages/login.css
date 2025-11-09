@@ -8,12 +8,12 @@ main.login-container {
 }
 
 .login-box {
-  background-color: white;
+  background-color: var(--white);
   padding: 40px 50px;
   border-radius: 12px;
   width: 100%;
   max-width: 380px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-lg);
   text-align: center;
 }
 
@@ -23,12 +23,12 @@ main.login-container {
 }
 
 .login-box .safe {
-  color: #1e90ff;
+  color: var(--primary-light);
 }
 
 .subtitle {
   font-size: 0.9rem;
-  color: #555;
+  color: var(--text-muted);
   margin-bottom: 25px;
 }
 
@@ -37,14 +37,14 @@ main.login-container {
   text-align: left;
   font-weight: 500;
   margin-bottom: 5px;
-  color: #333;
+  color: var(--text-dark);
 }
 
 .login-box input {
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border);
   border-radius: 6px;
   font-size: 1rem;
 }
@@ -52,17 +52,17 @@ main.login-container {
 .login-box button {
   width: 100%;
   padding: 10px;
-  background-color: #1e90ff;
-  color: white;
+  background-color: var(--primary-light);
+  color: var(--white);
   border: none;
   border-radius: 6px;
   font-size: 1rem;
   cursor: pointer;
-  transition: 0.3s;
+  transition: var(--transition);
 }
 
 .login-box button:hover {
-  background-color: #0a3d7e;
+  background-color: var(--primary-dark);
 }
 
 .register-text {
@@ -71,7 +71,7 @@ main.login-container {
 }
 
 .register-text a {
-  color: #1e90ff;
+  color: var(--primary-light);
   text-decoration: none;
 }
 
