@@ -1,6 +1,4 @@
-/* ===== CONFISAFE - VERSÃO EMPRESARIAL ===== */
-
-
+/* ===== PAINEL INICIAL - CONTEÚDO ===== */
 
 /* MAIN CONTENT */
 .main-content {
@@ -41,7 +39,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  transition: transform 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s;
   border-left: 4px solid var(--primary);
 }
 
@@ -76,7 +74,7 @@
   color: var(--text-light);
 }
 
-/* SECTIONS */
+/* SEÇÕES */
 .section {
   margin-bottom: 2.5rem;
 }
@@ -101,7 +99,7 @@
   border-radius: 8px;
   box-shadow: var(--shadow);
   text-align: center;
-  transition: transform 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .card:hover {
@@ -186,7 +184,7 @@
   margin: 0;
 }
 
-/* ALERTS */
+/* ALERTAS */
 .alerts-list {
   display: flex;
   flex-direction: column;
@@ -201,7 +199,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  border-left: 4px solid #17a2b8;
+  border-left: 4px solid #17a2b8; /* pode virar var(--info) se quiser */
   transition: transform 0.2s;
 }
 
@@ -246,7 +244,7 @@
   white-space: nowrap;
 }
 
-/* FOOTER */
+/* FOOTER DO PAINEL */
 .footer {
   background: var(--white);
   padding: 1.25rem 2rem;
@@ -256,7 +254,8 @@
   color: var(--text-light);
 }
 
-/* RESPONSIVO */
+/* ===== RESPONSIVO ===== */
+
 @media (max-width: 1024px) {
   :root {
     --sidebar-width: 220px;
@@ -268,28 +267,11 @@
 }
 
 @media (max-width: 768px) {
-  .menu a span {
-    display: none;
-  }
-  
-  .menu-toggle {
-    display: flex;
-  }
-  
-  .sidebar {
-    transform: translateX(-100%);
-    z-index: 200;
-  }
-  
-  .sidebar.open {
-    transform: translateX(0);
-  }
-  
   .main-content {
     margin-left: 0;
     padding: 1rem;
   }
-  
+
   .stats-grid {
     grid-template-columns: 1fr;
   }
@@ -300,14 +282,6 @@
 }
 
 @media (max-width: 480px) {
-  .navbar {
-    padding: 0 1rem;
-  }
-  
-  .logo a {
-    font-size: 1.25rem;
-  }
-  
   .page-header h2 {
     font-size: 1.5rem;
   }

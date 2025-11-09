@@ -19,6 +19,17 @@ body {
   line-height: 1.5;
 }
 
+/* body de quem esta logado */
+.page-configuracoes,
+.page-controle-acesso,
+.page-epis,
+.page-gestao-epis,
+.page-inicial,
+.page-relatorio,
+.page-treinamento{
+    background: var(--bg);
+}
+
 /* Links básicos */
 a {
   color: inherit;

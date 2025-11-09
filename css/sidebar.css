@@ -1,4 +1,7 @@
-/* ===== SIDEBAR ===== */
+/* =========================
+   SIDEBAR GLOBAL - CONFISAFE
+   ========================= */
+
 .sidebar {
   width: var(--sidebar-width);
   background: linear-gradient(180deg, var(--primary), var(--primary-dark));
@@ -71,16 +74,15 @@
   flex-shrink: 0;
 }
 
-/* RESPONSIVO DA SIDEBAR */
+/* Responsivo sidebar */
 @media (max-width: 768px) {
-  /* Sidebar escondida por padrão */
   .sidebar {
     transform: translateX(-100%);
     z-index: 200;
   }
 
-  /* Sidebar aberta */
   .sidebar.open {
     transform: translateX(0);
   }
 }
+
