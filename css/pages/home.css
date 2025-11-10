@@ -71,12 +71,17 @@
   padding: 30px;
   border-radius: 8px;
   box-shadow: var(--shadow);
-  transition: transform 0.3s;
+  transition: 
+  transform 0.3s,
+  box-shadow 0.3s ease;;
   text-align: center;
+  cursor: default;
 }
 
 .problem-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18); /* sombra mais forte no hover */
+  background-color: #fff; /* opcional: destaca o card */
 }
 
 .problem-card h3 {
