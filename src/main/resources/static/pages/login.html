@@ -35,17 +35,19 @@
       <h2><span class="conf">Confi</span><span class="safe">Safe</span></h2>
       <p class="subtitle">Acesso ao Sistema de Monitoramento de EPIs</p>
 
-      <form>
+      <form id="login-form" novalidate>
         <label for="email">E-mail</label>
-        <input type="email"     id="email"      name="email"      autocomplete="email"  placeholder="Digite seu e-mail" required />
-        
+        <input type="email" id="email" name="email"
+               autocomplete="email" placeholder="Digite seu e-mail" required />
+      
         <label for="senha">Senha</label>
-        <input type="password"  id="senha"      name="senha"      autocomplete="new-password"  placeholder="Digite sua senha" required />
-
-        <!-- <button type="submit">Entrar</button> -->
-         <button type="button" onclick="window.location.href='inicial.html'">Entrar</button>
-
+        <input type="password" id="senha" name="senha"
+               autocomplete="current-password" placeholder="Digite sua senha" required />
+      
+        <button type="submit" id="btn-login">Entrar</button>
       </form>
+      
+      <p id="login-message" style="margin-top:12px;"></p>
 
       <p class="register-text">
         Ainda não tem conta? <a href="../pages/cadastro.html">Cadastre-se</a>
