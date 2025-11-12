@@ -33,7 +33,7 @@
     });
   }
 
-  // ===== LOGOUT =====
+  // ===== LOGOUT PARA LIMPAR OS DADOS LOCAIS  =====
   // Realiza logout e limpa os dados locais.
   if (logoutBtn) {
     logoutBtn.addEventListener('click', function(e) {

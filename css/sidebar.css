@@ -28,8 +28,10 @@
   height: 70px;
   border-radius: 50%;
   border: 3px solid rgba(255,255,255,0.3);
-  margin-bottom: 0.75rem;
+  margin: 0 auto 0.75rem; /* auto nas laterais centraliza */
+  display: block; /* necessário para margin auto funcionar */
 }
+
 
 .user-name {
   font-size: 1rem;
