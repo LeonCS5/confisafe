@@ -173,10 +173,10 @@
       row.classList.add(rowClass);
 
       const epiImages = {
-        'capacete': '../img/capacete.png',
-        'luvas': '../img/luvas.png',
-        'mascara': '../img/mascara.png',
-        'colete': '../img/colete.png'
+        'capacete': '../assets/Epis/capaceteEpi.png',
+        'luvas': '../assets/Epis/luvasEpi.png',
+        'mascara': '../assets/Epis/mascaraRespiratoriaEpi.png',
+        'colete': '../assets/Epis/coleteReflexivoEpi.png'
       };
 
       row.innerHTML = `
