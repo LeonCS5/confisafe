@@ -90,6 +90,21 @@
             <label>Cargo *</label>
             <input type="text" id="cargo" required placeholder="Ex: Gerente de Segurança">
           </div>
+
+          <div class="input-group">
+            <label>Departamento</label>
+            <select id="departamento">
+              <option value="seguranca" selected>Segurança do Trabalho</option>
+              <option value="producao">Produção</option>
+              <option value="manutencao">Manutenção</option>
+              <option value="administrativo">Administrativo</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label>Ramal</label>
+            <input type="text" id="ramal" placeholder="0000">
+          </div>
         </div>
 
         <!-- Senha -->
@@ -126,5 +141,6 @@
   </main>
 
   <script src="script.js"></script>
+  <script src="../js/cadastro.js"></script>
 </body>
 </html>
