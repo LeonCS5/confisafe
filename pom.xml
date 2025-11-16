@@ -59,3 +59,6 @@
     </dependency>
   </dependencies>
 </project>
+
+<!-- abra o terminal e cole isso para rodar -->
+<!--  .\mvnw.cmd spring-boot:run -->
