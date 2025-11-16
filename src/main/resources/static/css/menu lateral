@@ -85,7 +85,7 @@
       
       <!-- User Info -->
       <div class="user-info">
-        <img src="../assets/img/controle.png" alt="Foto de perfil" class="user-avatar">
+        <img src="../assets/img/perfilimg.webp" alt="Foto de perfil" class="user-avatar">
         <h2 class="user-name" id="userName">Carregando...</h2>
         <p class="user-role" id="userRole">Carregando...</p>
       </div>

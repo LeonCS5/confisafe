@@ -31,6 +31,11 @@ public class CadastroRequest {
     @NotBlank(message = "Cargo é obrigatório")
     private String cargo;
 
+    // campos opcionais/ adicionais
+    private String departamento;
+
+    private String ramal;
+
     @NotBlank(message = "Senha é obrigatória")
     private String senha;
 
@@ -41,7 +46,7 @@ public class CadastroRequest {
     public CadastroRequest() {}
 
     public CadastroRequest(String razaoSocial, String cnpj, String emailCorporativo, String telefone,
-                          String nomeResponsavel, String cpf, String cargo, String senha, String confirmarSenha) {
+                          String nomeResponsavel, String cpf, String cargo, String departamento, String ramal, String senha, String confirmarSenha) {
         this.razaoSocial = razaoSocial;
         this.cnpj = cnpj;
         this.emailCorporativo = emailCorporativo;
@@ -49,6 +54,8 @@ public class CadastroRequest {
         this.nomeResponsavel = nomeResponsavel;
         this.cpf = cpf;
         this.cargo = cargo;
+        this.departamento = departamento;
+        this.ramal = ramal;
         this.senha = senha;
         this.confirmarSenha = confirmarSenha;
     }
@@ -109,6 +116,12 @@ public class CadastroRequest {
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
+
+    public String getDepartamento() { return departamento; }
+    public void setDepartamento(String departamento) { this.departamento = departamento; }
+
+    public String getRamal() { return ramal; }
+    public void setRamal(String ramal) { this.ramal = ramal; }
 
     public String getSenha() {
         return senha;

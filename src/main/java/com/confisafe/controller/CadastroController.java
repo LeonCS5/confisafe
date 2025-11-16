@@ -88,7 +88,15 @@ public class CadastroController {
             // Criar usuário automático para o e-mail corporativo (permite login)
             try {
                 if (!usuarioRepository.existsByEmail(request.getEmailCorporativo())) {
-                    Usuario novoUsuario = new Usuario(request.getEmailCorporativo(), request.getSenha());
+                    Usuario novoUsuario = new Usuario(
+                            request.getEmailCorporativo(),
+                            request.getSenha(),
+                            request.getNomeResponsavel(),
+                            request.getCargo(),
+                            request.getDepartamento(),
+                            request.getTelefone(),
+                            request.getRamal()
+                    );
                     usuarioRepository.save(novoUsuario);
                 }
             } catch (Exception e) {

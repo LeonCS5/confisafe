@@ -48,6 +48,8 @@ document.getElementById('registerForm').addEventListener('submit', async functio
   const nomeResponsavel = document.getElementById('nomeResponsavel').value;
   const cpf = document.getElementById('cpf').value;
   const cargo = document.getElementById('cargo').value;
+  const departamento = document.getElementById('departamento') ? document.getElementById('departamento').value : '';
+  const ramal = document.getElementById('ramal') ? document.getElementById('ramal').value : '';
   const senha = document.getElementById('senha').value;
   const confirmarSenha = document.getElementById('confirmarSenha').value;
 
@@ -101,13 +103,15 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     nomeResponsavel: nomeResponsavel,
     cpf: cpf,
     cargo: cargo,
+    departamento: departamento,
+    ramal: ramal,
     senha: senha,
     confirmarSenha: confirmarSenha
   };
 
   try {
     // Enviar dados ao Backend
-    const resposta = await fetch('http://localhost:8080/api/cadastro', {
+    const resposta = await fetch('/api/cadastro', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -122,6 +126,9 @@ document.getElementById('registerForm').addEventListener('submit', async functio
       
       // Limpar formulário
       document.getElementById('registerForm').reset();
+
+      // salvar email na sessão para facilitar login e carregar perfil
+      try { sessionStorage.setItem('confisafe_logged_email', emailCorporativo); } catch (_) {}
 
       // Redirecionar para login após 2 segundos
       setTimeout(() => {

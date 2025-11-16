@@ -93,24 +93,44 @@
         return;
       }
 
-      // Cria um objeto com os dados e salva no localStorage (simulação).
-      const userData = {
-        fullName,
-        email,
-        department,
-        phone,
-        ramal,
-        lastUpdate: new Date().toISOString()
+      // envia para o backend para atualizar o perfil
+      const originalEmail = sessionStorage.getItem('confisafe_logged_email') || email;
+
+      const payload = {
+        originalEmail: originalEmail,
+        email: email,
+        nomeCompleto: fullName,
+        departamento: department,
+        telefone: phone,
+        ramal: ramal
       };
 
-      localStorage.setItem('confisafe_user_profile', JSON.stringify(userData));
-      
-      showNotification('✅ Perfil atualizado com sucesso!', 'success');
+      fetch('/api/auth/atualizar-perfil', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.autenticado) {
+          // se o e-mail foi alterado, atualiza a sessão local
+          try {
+            sessionStorage.setItem('confisafe_logged_email', email);
+          } catch (_) {}
+          showNotification('✅ Perfil atualizado com sucesso!', 'success');
+        } else {
+          showNotification('❌ Erro: ' + (data.mensagem || 'Não foi possível atualizar o perfil'), 'danger');
+        }
+      })
+      .catch(err => {
+        console.error('Erro ao atualizar perfil:', err);
+        showNotification('❌ Erro ao atualizar perfil. Tente novamente.', 'danger');
+      });
     });
   }
 
   // ===== FORMULÁRIO DE SENHA =====
-  // Valida e simula a troca de senha.
+  // Valida e envia a troca de senha para o servidor.
   if (passwordForm) {
     passwordForm.addEventListener('submit', function(e) {
       e.preventDefault();
@@ -146,12 +166,11 @@
         return;
       }
 
-      // Simula sucesso e redireciona para login.
-      showNotification('✅ Senha alterada com sucesso! Faça login novamente.', 'success');
-      
-      setTimeout(() => {
-        window.location.href = '../pages/login.html';
-      }, 2000);
+      // Obter o email do usuário (você pode ajustar conforme necessário)
+      const email = document.getElementById('email').value;
+
+      // Envia a requisição para alterar a senha
+      alterarSenha(email, currentPassword, newPassword);
     });
   }
 
@@ -161,37 +180,122 @@
 
   // ===== CARREGAR DADOS DO USUÁRIO =====
   function loadUserData() {
+    // tenta carregar do servidor se o usuário estiver logado
+    const loggedEmail = sessionStorage.getItem('confisafe_logged_email');
+    if (loggedEmail) {
+      fetch('/api/auth/perfil?email=' + encodeURIComponent(loggedEmail))
+        .then(res => {
+          if (!res.ok) throw new Error('Perfil não encontrado');
+          return res.json();
+        })
+        .then(userData => {
+          if (document.getElementById('fullName')) {
+            document.getElementById('fullName').value = userData.nomeCompleto || '';
+          }
+          if (document.getElementById('email')) {
+            document.getElementById('email').value = userData.email || '';
+          }
+          if (document.getElementById('department')) {
+            document.getElementById('department').value = userData.departamento || 'seguranca';
+          }
+          if (document.getElementById('phone')) {
+            document.getElementById('phone').value = userData.telefone || '';
+          }
+          if (document.getElementById('ramal')) {
+            document.getElementById('ramal').value = userData.ramal || '';
+          }
+        })
+        .catch(err => {
+          console.warn('Não foi possível carregar perfil do servidor, usando localStorage como fallback', err);
+          const savedData = localStorage.getItem('confisafe_user_profile');
+          if (savedData) {
+            try {
+              const userData = JSON.parse(savedData);
+              if (document.getElementById('fullName')) document.getElementById('fullName').value = userData.fullName || '';
+              if (document.getElementById('email')) document.getElementById('email').value = userData.email || '';
+              if (document.getElementById('department')) document.getElementById('department').value = userData.department || 'seguranca';
+              if (document.getElementById('phone')) document.getElementById('phone').value = userData.phone || '';
+              if (document.getElementById('ramal')) document.getElementById('ramal').value = userData.ramal || '';
+            } catch (e) { console.error('Erro ao carregar fallback local:', e); }
+          }
+        });
+      return;
+    }
+
+    // fallback: carregar do localStorage se não estiver logado
     const savedData = localStorage.getItem('confisafe_user_profile');
-    
     if (savedData) {
       try {
         const userData = JSON.parse(savedData);
-        
-        // Preenche os campos do formulário com os dados salvos.
-        if (document.getElementById('fullName')) {
-          document.getElementById('fullName').value = userData.fullName || '';
-        }
-        if (document.getElementById('email')) {
-          document.getElementById('email').value = userData.email || '';
-        }
-        if (document.getElementById('department')) {
-          document.getElementById('department').value = userData.department || 'seguranca';
-        }
-        if (document.getElementById('phone')) {
-          document.getElementById('phone').value = userData.phone || '';
-        }
-        if (document.getElementById('ramal')) {
-          document.getElementById('ramal').value = userData.ramal || '';
-        }
+        if (document.getElementById('fullName')) document.getElementById('fullName').value = userData.fullName || '';
+        if (document.getElementById('email')) document.getElementById('email').value = userData.email || '';
+        if (document.getElementById('department')) document.getElementById('department').value = userData.department || 'seguranca';
+        if (document.getElementById('phone')) document.getElementById('phone').value = userData.phone || '';
+        if (document.getElementById('ramal')) document.getElementById('ramal').value = userData.ramal || '';
       } catch (e) {
         console.error('Erro ao carregar dados do usuário:', e);
       }
     }
   }
 
+  // ===== ALTERAR SENHA =====
+  // Envia a requisição de alteração de senha para o backend
+  function alterarSenha(email, senhaAtual, novaSenha) {
+    const payload = {
+      email: email,
+      senhaAtual: senhaAtual,
+      novaSenha: novaSenha
+    };
+
+    fetch('/api/auth/alterar-senha', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data && data.autenticado) {
+        showNotification('✅ Senha alterada com sucesso! Faça login novamente.', 'success');
+        // Limpa o formulário
+        document.getElementById('passwordForm').reset();
+        // Redireciona para login após 2 segundos
+        setTimeout(() => {
+          sessionStorage.clear();
+          localStorage.clear();
+          window.location.href = '../pages/login.html';
+        }, 2000);
+      } else {
+        showNotification('❌ Erro: ' + (data && data.mensagem ? data.mensagem : 'Não foi possível alterar a senha'), 'danger');
+      }
+    })
+    .catch(error => {
+      console.error('Erro na requisição:', error);
+      showNotification('❌ Erro ao alterar senha. Tente novamente.', 'danger');
+    });
+  }
+
 })();
 
 // ===== FUNÇÕES GLOBAIS =====
+
+// Abre a aba de segurança para alterar senha
+function abrirAlteracaoSenha() {
+  // Simula clique no botão da aba de segurança
+  const segurancaBtn = document.querySelector('[data-tab="seguranca"]');
+  if (segurancaBtn) {
+    segurancaBtn.click();
+    
+    // Foca no campo de senha atual
+    setTimeout(() => {
+      const currentPasswordField = document.getElementById('currentPassword');
+      if (currentPasswordField) {
+        currentPasswordField.focus();
+      }
+    }, 300);
+  }
+}
 
 // Reseta o formulário de perfil.
 function resetForm() {
@@ -237,7 +341,7 @@ function removeAvatar() {
   if (confirm('Deseja realmente remover sua foto de perfil?')) {
     const preview = document.getElementById('avatarPreview');
     if (preview) {
-      preview.src = '../assets/img/controle.png';
+      preview.src = '../assets/img/perfilimg.webp';
     }
     const input = document.getElementById('avatarInput');
     if (input) {

@@ -31,9 +31,20 @@ CREATE TABLE `usuarios` (
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(255) NOT NULL,
   `senha` VARCHAR(255) NOT NULL,
+  `nome_completo` VARCHAR(255) DEFAULT NULL,
+  `cargo` VARCHAR(255) DEFAULT NULL,
+  `departamento` VARCHAR(255) DEFAULT NULL,
+  `telefone` VARCHAR(64) DEFAULT NULL,
+  `ramal` VARCHAR(32) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_usuarios_email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- 4) Inserir usuários de exemplo
+INSERT INTO `usuarios` (`email`, `senha`, `nome_completo`, `cargo`, `departamento`, `telefone`, `ramal`) VALUES
+('michael.coutinho@confisafe.com', 'senha123', 'Michael Coutinho', 'Técnico de Segurança', 'seguranca', '(11) 98765-4321', '2345'),
+('admin@confisafe.com', 'admin123', 'Administrador', 'Administrador', 'administrativo', '', ''),
+('usuario@confisafe.com', 'usuario123', 'Usuário Exemplo', 'Operador', 'producao', '', '');
 
 
 

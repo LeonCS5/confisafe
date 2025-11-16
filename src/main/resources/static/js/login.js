@@ -33,6 +33,9 @@ document.addEventListener("DOMContentLoaded", () => {
         msg.style.color = "green";
 
         // redireciona após pequeno delay
+        // salva e-mail logado na sessão para uso em outras páginas
+        try { sessionStorage.setItem('confisafe_logged_email', email); } catch (_) {}
+
         setTimeout(() => {
           window.location.href = "/pages/inicial.html"; // ajuste o caminho se precisar
         }, 600);
