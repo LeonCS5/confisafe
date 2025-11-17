@@ -40,6 +40,7 @@ public class AuthController {
             request.getTelefone(),
             request.getRamal()
         ); // simples, sem hash
+        
         usuarioRepository.save(usuario);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(new LoginResponse(true, "Usuário criado com sucesso"));
@@ -138,6 +139,7 @@ public class AuthController {
         u.setDepartamento(request.getDepartamento());
         u.setTelefone(request.getTelefone());
         u.setRamal(request.getRamal());
+        u.setFotoPerfil(request.getFotoPerfil());
 
         usuarioRepository.save(u);
         return ResponseEntity.ok(new LoginResponse(true, "Perfil atualizado com sucesso"));

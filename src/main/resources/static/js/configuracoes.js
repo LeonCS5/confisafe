@@ -15,6 +15,7 @@
   const tabContents = document.querySelectorAll('.tab-content'); // Conteúdo das abas.
   const profileForm = document.getElementById('profileForm'); // Formulário de perfil do usuário.
   const passwordForm = document.getElementById('passwordForm'); // Formulário de alteração de senha.
+  const fotoPerfilInput = document.getElementById('fotoPerfil'); // 🔹 hidden da foto
 
   // ===== MENU PARA CELULAR =====
   // Abre e fecha o menu lateral no modo mobile.
@@ -79,6 +80,8 @@
       const department = document.getElementById('department').value;
       const phone = document.getElementById('phone').value.trim();
       const ramal = document.getElementById('ramal').value.trim();
+      const fotoPerfil = fotoPerfilInput ? (fotoPerfilInput.value || null) : null;
+      
 
       // Verifica se os campos obrigatórios estão preenchidos.
       if (!fullName || !email) {
@@ -102,7 +105,8 @@
         nomeCompleto: fullName,
         departamento: department,
         telefone: phone,
-        ramal: ramal
+        ramal: ramal,
+        fotoPerfil: fotoPerfil // 🔹 vai bater com UpdateProfileRequest.fotoPerfil
       };
 
       fetch('/api/auth/atualizar-perfil', {
@@ -113,10 +117,18 @@
       .then(res => res.json())
       .then(data => {
         if (data && data.autenticado) {
+
           // se o e-mail foi alterado, atualiza a sessão local
           try {
             sessionStorage.setItem('confisafe_logged_email', email);
           } catch (_) {}
+
+          // 🔹 Atualiza o sidebar se ele existir nessa tela
+          const nameEl = document.getElementById('userName');
+          const roleEl = document.getElementById('userRole');
+          if (nameEl) nameEl.textContent = fullName;
+          if (roleEl) roleEl.textContent = department || 'Segurança';
+
           showNotification('✅ Perfil atualizado com sucesso!', 'success');
         } else {
           showNotification('❌ Erro: ' + (data.mensagem || 'Não foi possível atualizar o perfil'), 'danger');
@@ -203,6 +215,21 @@
           }
           if (document.getElementById('ramal')) {
             document.getElementById('ramal').value = userData.ramal || '';
+          }
+
+          // 🔹 Foto de perfil
+          const preview = document.getElementById('avatarPreview');
+          const sidebarAvatar = document.querySelector('.user-avatar');
+          const defaultAvatar = '../assets/img/perfilimg.webp';
+
+          if (userData.fotoPerfil) {
+            if (preview) preview.src = userData.fotoPerfil;
+            if (sidebarAvatar) sidebarAvatar.src = userData.fotoPerfil;
+            if (fotoPerfilInput) fotoPerfilInput.value = userData.fotoPerfil;
+          } else {
+            if (preview) preview.src = defaultAvatar;
+            if (sidebarAvatar) sidebarAvatar.src = defaultAvatar;
+            if (fotoPerfilInput) fotoPerfilInput.value = '';
           }
         })
         .catch(err => {
@@ -324,14 +351,22 @@ function previewAvatar(event) {
     return;
   }
 
-  // Lê e exibe a imagem selecionada.
   const reader = new FileReader();
   reader.onload = function(e) {
+    const dataUrl = e.target.result; // data:image/png;base64,...
+
     const preview = document.getElementById('avatarPreview');
-    if (preview) {
-      preview.src = e.target.result;
-      showNotification('✅ Foto de perfil atualizada!', 'success');
-    }
+    const sidebarAvatar = document.querySelector('.user-avatar');
+    const fotoPerfilInput = document.getElementById('fotoPerfil'); // hidden
+
+    // Atualiza prévia na página de configurações
+    if (preview) {preview.src = dataUrl;}
+    // Atualiza foto do sidebar (se existir nessa tela)
+    if (sidebarAvatar) {sidebarAvatar.src = dataUrl;}
+    // Guarda Base64 no input hidden para enviar ao backend no salvar perfil
+    if (fotoPerfilInput) {fotoPerfilInput.value = dataUrl;}
+
+    showNotification('✅ Foto de perfil atualizada! Não esqueça de salvar o perfil.', 'success');
   };
   reader.readAsDataURL(file);
 }
@@ -340,14 +375,28 @@ function previewAvatar(event) {
 function removeAvatar() {
   if (confirm('Deseja realmente remover sua foto de perfil?')) {
     const preview = document.getElementById('avatarPreview');
-    if (preview) {
-      preview.src = '../assets/img/perfilimg.webp';
-    }
+    const sidebarAvatar = document.querySelector('.user-avatar');
+    const fotoPerfilInput = document.getElementById('fotoPerfil'); // hidden
+    const defaultAvatar = '../assets/img/perfilimg.webp';
+
+    // Volta imagem padrão na tela de configurações
+    if (preview) {preview.src = defaultAvatar;}
+
+    // Volta imagem padrão no sidebar (se existir)
+    if (sidebarAvatar) {sidebarAvatar.src = defaultAvatar;}
+
+    // Limpa o file input
     const input = document.getElementById('avatarInput');
     if (input) {
       input.value = '';
     }
-    showNotification('Foto de perfil removida.', 'info');
+
+    // Zera o valor que será enviado ao backend
+    if (fotoPerfilInput) {
+      fotoPerfilInput.value = '';
+    }
+
+    showNotification('Foto de perfil removida. Salve o perfil para confirmar.', 'info');
   }
 }
 

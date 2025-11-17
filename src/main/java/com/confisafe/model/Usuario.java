@@ -33,6 +33,10 @@ public class Usuario {
 
     private String ramal;
 
+    @Lob
+    @Column(name = "foto_perfil")
+    private String fotoPerfil;
+
     public Usuario() {}
 
     public Usuario(String email, String senha) {
@@ -72,5 +76,8 @@ public class Usuario {
 
     public String getRamal() { return ramal; }
     public void setRamal(String ramal) { this.ramal = ramal; }
+
+    public String getFotoPerfil() {return fotoPerfil;}
+    public void setFotoPerfil(String fotoPerfil) {this.fotoPerfil = fotoPerfil;}
 }
 

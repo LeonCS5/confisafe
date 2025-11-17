@@ -123,6 +123,16 @@ document.getElementById('registerForm').addEventListener('submit', async functio
 
     if (resposta.ok) {
       exibirMensagem('✅ Cadastro realizado com sucesso!\n\nEmpresa ID: ' + resultado.empresaId, 'sucesso');
+
+      // 👉 salvar dados básicos do usuário logado
+      try {
+        const perfil = {
+          nome: nomeResponsavel,
+          cargo: cargo,
+          email: emailCorporativo
+        };
+        sessionStorage.setItem('confisafe_user_profile', JSON.stringify(perfil));
+      } catch (_) {}
       
       // Limpar formulário
       document.getElementById('registerForm').reset();

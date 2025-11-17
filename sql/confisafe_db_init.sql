@@ -36,6 +36,7 @@ CREATE TABLE `usuarios` (
   `departamento` VARCHAR(255) DEFAULT NULL,
   `telefone` VARCHAR(64) DEFAULT NULL,
   `ramal` VARCHAR(32) DEFAULT NULL,
+  `foto_perfil` LONGTEXT DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_usuarios_email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

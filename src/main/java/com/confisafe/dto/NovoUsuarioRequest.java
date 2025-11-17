@@ -11,6 +11,7 @@ public class NovoUsuarioRequest {
     private String departamento;
     private String telefone;
     private String ramal;
+    private String fotoPerfil;
 
     public NovoUsuarioRequest() {}
 
@@ -73,5 +74,13 @@ public class NovoUsuarioRequest {
 
     public void setRamal(String ramal) {
         this.ramal = ramal;
+    }
+
+    public String getFotoPerfil() {
+        return fotoPerfil;
+    }
+
+    public void setFotoPerfil(String fotoPerfil) {
+        this.fotoPerfil = fotoPerfil;
     }
 }

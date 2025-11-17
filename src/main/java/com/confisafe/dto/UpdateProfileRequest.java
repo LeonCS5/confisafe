@@ -9,6 +9,7 @@ public class UpdateProfileRequest {
     private String departamento;
     private String telefone;
     private String ramal;
+    private String fotoPerfil;
 
     public UpdateProfileRequest() {}
 
@@ -32,4 +33,7 @@ public class UpdateProfileRequest {
 
     public String getRamal() { return ramal; }
     public void setRamal(String ramal) { this.ramal = ramal; }
+
+    public String getFotoPerfil() {return fotoPerfil;}
+    public void setFotoPerfil(String fotoPerfil) {this.fotoPerfil = fotoPerfil;}
 }
