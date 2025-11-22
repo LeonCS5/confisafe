@@ -2,8 +2,8 @@
 -- Cria o banco de dados, tabelas e alguns registros de exemplo
 
 -- 1) Cria o banco (se já existir, mantém)
-CREATE DATABASE IF NOT EXISTS `confisafe_db` CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
-USE `confisafe_db`;
+-- CREATE DATABASE IF NOT EXISTS `confisafe_db` CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+USE `railway`;
 
 -- 2) Tabela empresas (corresponde à entidade Empresa.java)
 DROP TABLE IF EXISTS `empresas`;
@@ -50,8 +50,6 @@ INSERT INTO `usuarios` (`email`, `senha`, `nome_completo`, `cargo`, `departament
 
 -- Tabela Treinamento
 -- 1) Tabela treinamento (corresponde à entidade Treinamento.java)
-USE confisafe_db;
-
 -- Cria a tabela treinamento (se já existir, apaga antes)
 DROP TABLE IF EXISTS `treinamento`;
 
