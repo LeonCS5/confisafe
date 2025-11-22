@@ -2,8 +2,8 @@
 -- Cria o banco de dados, tabelas e alguns registros de exemplo
 
 -- 1) Cria o banco (se já existir, mantém)
-CREATE DATABASE IF NOT EXISTS `confisafe_db` CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
-USE `confisafe_db`;
+-- CREATE DATABASE IF NOT EXISTS `confisafe_db` CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+USE `railway`;
 
 -- 2) Tabela empresas (corresponde à entidade Empresa.java)
 DROP TABLE IF EXISTS `empresas`;
