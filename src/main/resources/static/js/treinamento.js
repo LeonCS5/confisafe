@@ -9,7 +9,7 @@
   // ===== FUNÇÃO PARA BUSCAR NO BANCO DE DADOS =====
   async function carregarTreinamentosDoBackend() {
   try {
-    const response = await fetch("http://localhost:8080/treinamentos");
+    const response = await fetch("/api/treinamentos");
     const dados = await response.json();
 
     // Converter o formato do banco para o formato da tabela
