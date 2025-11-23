@@ -78,6 +78,20 @@ VALUES
 ('Lucas Almeida', 'Técnico', 'NR-33', '2023-01-25', '2024-01-25', 'VENCIDO'),
 ('Fernanda Gomes', 'Operadora', 'NR-35', '2024-05-21', '2025-05-21', 'VALIDO');
 
+-- Tabela Funcionarios
+-- 1) Tabela funcionarios (corresponde à entidade Funcionarios.java)
+DROP TABLE IF EXISTS `funcionarios`;
+CREATE TABLE `funcionarios` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `nome_completo` VARCHAR(255) NOT NULL,
+  `cargo` VARCHAR(255) NOT NULL,
+  `departamento` VARCHAR(255) DEFAULT NULL,
+  `email` VARCHAR(255) NOT NULL,
+  `telefone` VARCHAR(64) DEFAULT NULL,
+  `ativo` TINYINT(1) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_funcionarios_email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 
