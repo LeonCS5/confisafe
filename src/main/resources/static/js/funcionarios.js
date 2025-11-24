@@ -14,6 +14,7 @@
   const tbody = document.getElementById('funcionariosTableBody');
 
   const loadingSpinner = document.getElementById('loadingSpinner');
+  const funcTelefoneInput = document.getElementById('funcTelefone');
 
   let funcionarios = [];
   let editingId = null;
@@ -165,6 +166,35 @@
     if (!modal) return;
     modal.classList.remove('show');
     editingId = null;
+  }
+
+   // ===== MÁSCARA DE TELEFONE (BR) =====
+  if (funcTelefoneInput) {
+    funcTelefoneInput.addEventListener('input', function (e) {
+      let value = e.target.value;
+
+      // remove tudo que não for número
+      value = value.replace(/\D/g, '');
+
+      // limita a 11 dígitos (DDD + 9 números)
+      if (value.length > 11) {
+        value = value.slice(0, 11);
+      }
+
+      // aplica máscara
+      if (value.length > 6) {
+        // (11) 99999-9999
+        value = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7)}`;
+      } else if (value.length > 2) {
+        // (11) 9999...
+        value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
+      } else if (value.length > 0) {
+        // começa a digitar o DDD: "(1" / "(11"
+        value = `(${value}`;
+      }
+
+      e.target.value = value;
+    });
   }
 
   if (btnAddFuncionario) {
