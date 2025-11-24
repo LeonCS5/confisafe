@@ -34,7 +34,7 @@ public class Usuario {
     private String ramal;
 
     @Lob
-    @Column(name = "foto_perfil")
+    @Column(name = "foto_perfil", columnDefinition = "LONGTEXT")
     private String fotoPerfil;
 
     public Usuario() {}
@@ -52,6 +52,7 @@ public class Usuario {
         this.departamento = departamento;
         this.telefone = telefone;
         this.ramal = ramal;
+        //this.fotoPerfil = fotoPerfil;
     }
 
     public Long getId() { return id; }
