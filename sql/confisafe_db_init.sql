@@ -88,7 +88,7 @@ CREATE TABLE `funcionarios` (
   `departamento` VARCHAR(255) DEFAULT NULL,
   `email` VARCHAR(255) NOT NULL,
   `telefone` VARCHAR(64) DEFAULT NULL,
-  `ativo` TINYINT(1) NOT NULL DEFAULT 1,
+  `ativo` BOOLEAN NOT NULL DEFAULT TRUE,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_funcionarios_email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
